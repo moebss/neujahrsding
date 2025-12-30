@@ -30,7 +30,7 @@ export default async (req, res) => {
             body: JSON.stringify({
                 model: 'sonar-pro',
                 messages: [
-                    { role: 'system', content: `Du schreibst Neujahrsgrüße für 2026 auf ${lang}. Antworte NUR mit dem Gruß.` },
+                    { role: 'system', content: `Du schreibst Neujahrsgrüße für 2026 auf ${lang}. Antworte NUR mit dem Text des Grußes. KEINE Platzhalter für Absender/Unterschrift wie "[Dein Name]" am Ende.` },
                     { role: 'user', content: `Name: ${name}, Verhältnis: ${relation}, Details: ${info}, Ton: ${tone}` }
                 ],
                 max_tokens: 600,

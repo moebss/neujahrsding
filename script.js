@@ -308,6 +308,9 @@ async function generateNewYearMessage(name, relation, info, tone) {
         // Clean up Markdown-style formatting (e.g. **bold**)
         let cleanText = data.text.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1');
 
+        // Remove generic signatures if AI adds them despite instructions
+        cleanText = cleanText.replace(/\n\s*[-–]?\s*(Dein Name|Dein Absender|Ihr Name|Your Name|\[.*?\])\s*$/i, '').trim();
+
         return cleanText;
     } catch (error) {
         return getLocalFallbackMessage(name, relation, info, tone);
