@@ -294,21 +294,13 @@ async function generateNewYearMessage(name, relation, info, tone) {
         const data = await response.json();
 
         if (!response.ok) {
-            let errorMessage = 'API request failed';
-            if (data && data.error) {
-                errorMessage = data.error;
-            } else if (response.status === 429) {
-                errorMessage = `Du hast dein Limit für heute erreicht. Bitte versuche es später erneut.`;
-            } else if (response.status === 500) {
-                errorMessage = `Ein interner Serverfehler ist aufgetreten.`;
-            }
-            throw new Error(errorMessage);
+            console.warn('API Warning:', data.error || response.statusText);
+            throw new Error('API Request failed');
         }
 
         return data.text + "\n\n✨ (Sicher generiert via Backend)";
     } catch (error) {
-        console.error('DIAGNOSTIC ERROR:', error);
-        return getLocalFallbackMessage(name, relation, info, tone) + `\n\n🔴 [DIAGNOSE V2] Fehler: ${error.message}`;
+        return getLocalFallbackMessage(name, relation, info, tone);
     }
 }
 
