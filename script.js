@@ -865,7 +865,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Download as Image (Robust "Ghost Container" Method)
     document.getElementById('downloadBtn').addEventListener('click', async () => {
-        const messageText = document.getElementById('generatedMessage').innerText;
+        let messageText = document.getElementById('generatedMessage').innerText;
+
+        // AGGRESSIVE CLEANER: Kill typical placeholders before image generation
+        // Removes: "Dein Name", "[Dein Name]", "Ihr Name", "Name", "Absender" at the end of the text
+        const badEndings = [
+            /Dein Name\s*$/i,
+            /\[Dein Name\]\s*$/i,
+            /Ihr Name\s*$/i,
+            /\[Ihr Name\]\s*$/i,
+            /Your Name\s*$/i,
+            /\[Your Name\]\s*$/i,
+            /Name\s*$/i,
+            /\[Name\]\s*$/i,
+            /Dein Absender\s*$/i
+        ];
+
+        // Apply regex to cut off the end
+        badEndings.forEach(regex => {
+            messageText = messageText.replace(regex, '');
+        });
+
+        // Also clean generic trailing newlines/dashes
+        messageText = messageText.replace(/[\n\r\s]+[-–]*[\n\r\s]*$/, '').trim();
+
         const btnText = document.querySelector('#downloadBtn span[data-i18n]');
         const originalText = btnText ? btnText.textContent : 'Als Bild speichern';
 
