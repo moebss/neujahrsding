@@ -869,15 +869,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalStyle = messageContainer.style.cssText;
 
             // Premium Festive Look
-            // Complex gradient: Dark Night Sky -> Vibrant Purple -> Festive Magenta -> Deep Blue
-            messageContainer.style.background = 'linear-gradient(135deg, #050511 0%, #3b0e42 30%, #611333 70%, #050511 100%)';
+            // Vibrant Gradient: Deep Violet -> Magenta -> Dark Blue
+            messageContainer.style.backgroundImage = 'linear-gradient(135deg, #240046 0%, #7b2cbf 50%, #240046 100%)';
+            messageContainer.style.backgroundColor = '#240046'; // Fallback
             messageContainer.style.padding = '70px 50px';
             messageContainer.style.borderRadius = '30px';
             messageContainer.style.border = '4px solid #ffd700';
-            messageContainer.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.25), inset 0 0 40px rgba(0,0,0,0.5)';
+            messageContainer.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.4), inset 0 0 40px rgba(0,0,0,0.5)';
             messageContainer.style.color = '#fff';
             messageContainer.style.textAlign = 'center';
-            messageContainer.style.position = 'relative'; // For pseudo-elements if needed
+            messageContainer.style.position = 'relative';
 
             // Add decorative title with Fireworks
             const titleDiv = document.createElement('div');
@@ -891,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add Footer with URL
             const footerDiv = document.createElement('div');
             footerDiv.innerHTML = '✨ Erstellt auf <b>neujahrsgruss2026.de</b> ✨';
-            footerDiv.style.color = 'rgba(255, 255, 255, 0.5)';
+            footerDiv.style.color = 'rgba(255, 255, 255, 0.8)'; // More visible
             footerDiv.style.marginTop = '40px';
             footerDiv.style.fontFamily = "'Outfit', sans-serif";
             footerDiv.style.fontSize = '14px';
@@ -901,17 +902,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Make text larger and centered for the image
             const textContent = messageContainer.querySelector('.message-text') || messageContainer;
             const originalFontSize = textContent.style.fontSize;
-            textContent.style.fontSize = '24px';
-            textContent.style.lineHeight = '1.7';
+            textContent.style.fontSize = '26px'; // Even larger
+            textContent.style.lineHeight = '1.6';
             textContent.style.fontFamily = "'Outfit', sans-serif";
-            textContent.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+            textContent.style.textShadow = '0 2px 4px rgba(0,0,0,0.5)';
 
             messageContainer.insertBefore(titleDiv, messageContainer.firstChild);
             messageContainer.appendChild(footerDiv);
 
             const canvas = await html2canvas(messageContainer, {
-                scale: 2, // High resolution (Retina)
-                backgroundColor: '#050511', // Dark background matching the gradient start
+                scale: 2,
+                backgroundColor: null, // IMPORTANT: Allows gradient to show through
                 logging: false,
                 useCORS: true
             });
