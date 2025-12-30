@@ -544,6 +544,19 @@ select option {
     box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
 }
 
+
+.btn-download {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.btn-download:hover {
+    background: var(--color-gold);
+    color: var(--color-bg-dark);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
 .btn-new {
     width: 100%;
     padding: var(--space-md);
