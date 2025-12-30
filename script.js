@@ -869,41 +869,56 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalStyle = messageContainer.style.cssText;
 
             // Premium Festive Look
-            messageContainer.style.background = 'radial-gradient(circle at center, #2a0845 0%, #1a0b2e 100%)';
-            messageContainer.style.padding = '60px 40px';
+            // Complex gradient: Dark Night Sky -> Vibrant Purple -> Festive Magenta -> Deep Blue
+            messageContainer.style.background = 'linear-gradient(135deg, #050511 0%, #3b0e42 30%, #611333 70%, #050511 100%)';
+            messageContainer.style.padding = '70px 50px';
             messageContainer.style.borderRadius = '30px';
-            messageContainer.style.border = '3px solid #ffd700';
-            messageContainer.style.boxShadow = '0 0 50px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.1)';
+            messageContainer.style.border = '4px solid #ffd700';
+            messageContainer.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.25), inset 0 0 40px rgba(0,0,0,0.5)';
             messageContainer.style.color = '#fff';
             messageContainer.style.textAlign = 'center';
+            messageContainer.style.position = 'relative'; // For pseudo-elements if needed
 
             // Add decorative title with Fireworks
             const titleDiv = document.createElement('div');
             titleDiv.innerHTML = '🎆 ✨ <b>Neujahrsgruß 2026</b> ✨ 🎆';
             titleDiv.style.color = '#ffd700';
-            titleDiv.style.marginBottom = '30px';
+            titleDiv.style.marginBottom = '40px';
             titleDiv.style.fontFamily = "'Outfit', sans-serif";
-            titleDiv.style.fontSize = '32px';
-            titleDiv.style.textShadow = '0 0 15px rgba(255, 215, 0, 0.6)';
+            titleDiv.style.fontSize = '36px';
+            titleDiv.style.textShadow = '0 0 20px rgba(255, 215, 0, 0.5)';
+
+            // Add Footer with URL
+            const footerDiv = document.createElement('div');
+            footerDiv.innerHTML = '✨ Erstellt auf <b>neujahrsgruss2026.de</b> ✨';
+            footerDiv.style.color = 'rgba(255, 255, 255, 0.5)';
+            footerDiv.style.marginTop = '40px';
+            footerDiv.style.fontFamily = "'Outfit', sans-serif";
+            footerDiv.style.fontSize = '14px';
+            footerDiv.style.textTransform = 'uppercase';
+            footerDiv.style.letterSpacing = '2px';
 
             // Make text larger and centered for the image
             const textContent = messageContainer.querySelector('.message-text') || messageContainer;
             const originalFontSize = textContent.style.fontSize;
-            textContent.style.fontSize = '22px';
-            textContent.style.lineHeight = '1.6';
+            textContent.style.fontSize = '24px';
+            textContent.style.lineHeight = '1.7';
             textContent.style.fontFamily = "'Outfit', sans-serif";
+            textContent.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
 
             messageContainer.insertBefore(titleDiv, messageContainer.firstChild);
+            messageContainer.appendChild(footerDiv);
 
             const canvas = await html2canvas(messageContainer, {
                 scale: 2, // High resolution (Retina)
-                backgroundColor: '#110F1A', // Dark background to prevent transparency issues
+                backgroundColor: '#050511', // Dark background matching the gradient start
                 logging: false,
                 useCORS: true
             });
 
             // Restore original state
             titleDiv.remove();
+            footerDiv.remove();
             messageContainer.style.cssText = originalStyle;
             if (textContent !== messageContainer) textContent.style.fontSize = originalFontSize;
 
