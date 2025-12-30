@@ -307,8 +307,8 @@ async function generateNewYearMessage(name, relation, info, tone) {
 
         return data.text + "\n\n✨ (Sicher generiert via Backend)";
     } catch (error) {
-        console.error('Detailed Error:', error);
-        return getLocalFallbackMessage(name, relation, info, tone) + `\n\n⚠️ (Fehler: ${error.message})`;
+        console.error('DIAGNOSTIC ERROR:', error);
+        return getLocalFallbackMessage(name, relation, info, tone) + `\n\n🔴 [DIAGNOSE V2] Fehler: ${error.message}`;
     }
 }
 
