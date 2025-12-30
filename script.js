@@ -860,77 +860,90 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `mailto:?subject=${subject}&body=${body}`;
     });
 
-    // Download as Image
+    // Download as Image (Robust "Ghost Container" Method)
     document.getElementById('downloadBtn').addEventListener('click', async () => {
-        const messageContainer = document.querySelector('.message-container');
+        const messageText = document.getElementById('generatedMessage').innerText;
+        const btnText = document.querySelector('#downloadBtn span[data-i18n]');
+        const originalText = btnText ? btnText.textContent : 'Als Bild speichern';
+
+        // Show loading state
+        if (btnText) btnText.textContent = '🎨 Generiere Bild...';
+
+        // 1. Create a dedicated export container (off-screen)
+        // This ensures consistent width/look regardless of mobile/desktop view
+        const exportContainer = document.createElement('div');
+        exportContainer.style.position = 'fixed';
+        exportContainer.style.left = '-9999px';
+        exportContainer.style.top = '0';
+        exportContainer.style.width = '800px'; // Fixed width for high quality
+        exportContainer.style.padding = '80px 60px';
+        exportContainer.style.borderRadius = '40px';
+        exportContainer.style.display = 'flex';
+        exportContainer.style.flexDirection = 'column';
+        exportContainer.style.alignItems = 'center';
+        exportContainer.style.justifyContent = 'center';
+
+        // VIBRANT GRADIENT BACKGROUND
+        exportContainer.style.background = 'linear-gradient(135deg, #120024 0%, #4a0a69 40%, #7b0d45 70%, #120024 100%)';
+
+        exportContainer.style.color = '#ffffff';
+        exportContainer.style.fontFamily = "'Outfit', sans-serif";
+        exportContainer.style.textAlign = 'center';
+        exportContainer.style.boxShadow = '0 30px 80px rgba(0,0,0,0.6)';
+        exportContainer.style.border = '6px solid #ffd700';
+
+        // 2. Build the content
+        exportContainer.innerHTML = `
+            <div style="font-size: 48px; margin-bottom: 50px; color: #ffd700; text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); font-weight: bold;">
+                🎆 ✨ Neujahrsgruß 2026 ✨ 🎆
+            </div>
+            
+            <div style="font-size: 32px; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.4); margin-bottom: 60px; white-space: pre-wrap; width: 100%;">
+                ${messageText}
+            </div>
+            
+            <div style="
+                font-size: 18px; 
+                color: rgba(255, 255, 255, 0.9); 
+                text-transform: uppercase; 
+                letter-spacing: 4px; 
+                font-weight: 600; 
+                border-top: 1px solid rgba(255,255,255,0.3); 
+                padding-top: 30px; 
+                margin-top: auto;
+                width: 50%;">
+                ✨ Erstellt auf neujahrsgruss2026.de ✨
+                <br>
+                <span style="font-size: 12px; opacity: 0.6; text-transform: none; letter-spacing: 1px; display: block; margin-top: 10px;">
+                    Ein Projekt von Alexander Rheindorf
+                </span>
+            </div>
+        `;
+
+        document.body.appendChild(exportContainer);
 
         try {
-            // Add temporary style for festive image capture
-            const originalStyle = messageContainer.style.cssText;
-
-            // Premium Festive Look
-            // Vibrant Gradient: Deep Violet -> Magenta -> Dark Blue
-            messageContainer.style.backgroundImage = 'linear-gradient(135deg, #240046 0%, #7b2cbf 50%, #240046 100%)';
-            messageContainer.style.backgroundColor = '#240046'; // Fallback
-            messageContainer.style.padding = '70px 50px';
-            messageContainer.style.borderRadius = '30px';
-            messageContainer.style.border = '4px solid #ffd700';
-            messageContainer.style.boxShadow = '0 0 60px rgba(255, 215, 0, 0.4), inset 0 0 40px rgba(0,0,0,0.5)';
-            messageContainer.style.color = '#fff';
-            messageContainer.style.textAlign = 'center';
-            messageContainer.style.position = 'relative';
-
-            // Add decorative title with Fireworks
-            const titleDiv = document.createElement('div');
-            titleDiv.innerHTML = '🎆 ✨ <b>Neujahrsgruß 2026</b> ✨ 🎆';
-            titleDiv.style.color = '#ffd700';
-            titleDiv.style.marginBottom = '40px';
-            titleDiv.style.fontFamily = "'Outfit', sans-serif";
-            titleDiv.style.fontSize = '36px';
-            titleDiv.style.textShadow = '0 0 20px rgba(255, 215, 0, 0.5)';
-
-            // Add Footer with URL
-            const footerDiv = document.createElement('div');
-            footerDiv.innerHTML = '✨ Erstellt auf <b>neujahrsgruss2026.de</b> ✨';
-            footerDiv.style.color = 'rgba(255, 255, 255, 0.8)'; // More visible
-            footerDiv.style.marginTop = '40px';
-            footerDiv.style.fontFamily = "'Outfit', sans-serif";
-            footerDiv.style.fontSize = '14px';
-            footerDiv.style.textTransform = 'uppercase';
-            footerDiv.style.letterSpacing = '2px';
-
-            // Make text larger and centered for the image
-            const textContent = messageContainer.querySelector('.message-text') || messageContainer;
-            const originalFontSize = textContent.style.fontSize;
-            textContent.style.fontSize = '26px'; // Even larger
-            textContent.style.lineHeight = '1.6';
-            textContent.style.fontFamily = "'Outfit', sans-serif";
-            textContent.style.textShadow = '0 2px 4px rgba(0,0,0,0.5)';
-
-            messageContainer.insertBefore(titleDiv, messageContainer.firstChild);
-            messageContainer.appendChild(footerDiv);
-
-            const canvas = await html2canvas(messageContainer, {
-                scale: 2,
-                backgroundColor: null, // IMPORTANT: Allows gradient to show through
+            // 3. Render the ghost container
+            const canvas = await html2canvas(exportContainer, {
+                scale: 2, // 1600px width final image (Retina quality)
+                backgroundColor: null,
                 logging: false,
-                useCORS: true
+                useCORS: true,
+                allowTaint: true
             });
 
-            // Restore original state
-            titleDiv.remove();
-            footerDiv.remove();
-            messageContainer.style.cssText = originalStyle;
-            if (textContent !== messageContainer) textContent.style.fontSize = originalFontSize;
-
-            // Trigger download
+            // 4. Trigger download
             const link = document.createElement('a');
             link.download = 'neujahrsgruss-2026.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
         } catch (err) {
-            console.error('Image generation failed:', err);
-            alert('Fehler beim Erstellen des Bildes.');
+            console.error('Image export failed:', err);
+            alert('Fehler beim Speichern des Bildes.');
+        } finally {
+            // 5. Cleanup
+            document.body.removeChild(exportContainer);
+            if (btnText) btnText.textContent = originalText;
         }
     });
 
