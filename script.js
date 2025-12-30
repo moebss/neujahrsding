@@ -40,7 +40,7 @@ const translations = {
         'btn-new': '🎊 Neuen Gruß erstellen',
 
         // Footer
-        'footer': 'Made with 💛 for 2026 | Frohes neues Jahr! 🎆'
+        'footer': 'Ein Projekt von Alexander Rheindorf | Frohes neues Jahr 2026! 🎆'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -72,7 +72,7 @@ const translations = {
         'btn-email': 'Send via Email',
         'btn-download': 'Save as Image',
         'btn-new': '🎊 Create New Greeting',
-        'footer': 'Made with 💛 for 2026 | Happy New Year! 🎆'
+        'footer': 'A project by Alexander Rheindorf | Happy New Year 2026! 🎆'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',
@@ -104,7 +104,7 @@ const translations = {
         'btn-email': 'E-posta ile Gönder',
         'btn-download': 'Resim Olarak Kaydet',
         'btn-new': '🎊 Yeni Kutlama Oluştur',
-        'footer': 'Made with 💛 for 2026 | Mutlu Yıllar! 🎆'
+        'footer': 'Alexander Rheindorf Projesi | Mutlu Yıllar 2026! 🎆'
     },
     es: {
         'header-title': 'Tu Saludo de Año Nuevo Personal 2026',
@@ -136,7 +136,7 @@ const translations = {
         'btn-email': 'Enviar por Correo',
         'btn-download': 'Guardar como Imagen',
         'btn-new': '🎊 Crear Nuevo Saludo',
-        'footer': 'Made with 💛 for 2026 | ¡Feliz Año Nuevo! 🎆'
+        'footer': 'Un proyecto de Alexander Rheindorf | ¡Feliz Año Nuevo 2026! 🎆'
     },
     fr: {
         'header-title': 'Votre Vœu de Nouvel An Personnel 2026',
@@ -168,7 +168,7 @@ const translations = {
         'btn-email': 'Envoyer par Email',
         'btn-download': 'Enregistrer comme Image',
         'btn-new': '🎊 Créer un Nouveau Vœu',
-        'footer': 'Made with 💛 for 2026 | Bonne Année! 🎆'
+        'footer': 'Un projet d\'Alexander Rheindorf | Bonne Année 2026! 🎆'
     },
     it: {
         'header-title': 'Il Tuo Augurio di Capodanno Personale 2026',
@@ -200,7 +200,7 @@ const translations = {
         'btn-email': 'Invia via Email',
         'btn-download': 'Salva come Immagine',
         'btn-new': '🎊 Crea Nuovo Augurio',
-        'footer': 'Made with 💛 for 2026 | Felice Anno Nuovo! 🎆'
+        'footer': 'Un progetto di Alexander Rheindorf | Felice Anno Nuovo 2026! 🎆'
     },
     bg: {
         'header-title': 'Вашето Лично Новогодишно Пожелание 2026',
@@ -232,7 +232,7 @@ const translations = {
         'btn-email': 'Изпрати чрез имейл',
         'btn-download': 'Запази като изображение',
         'btn-new': '🎊 Създай нов поздрав',
-        'footer': 'Made with 💛 for 2026 | Честита Нова Година! 🎆'
+        'footer': 'Проект на Alexander Rheindorf | Честита Нова Година 2026! 🎆'
     }
 };
 
