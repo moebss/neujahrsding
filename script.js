@@ -884,7 +884,9 @@ document.addEventListener('DOMContentLoaded', () => {
         exportContainer.style.justifyContent = 'center';
 
         // VIBRANT GRADIENT BACKGROUND
-        exportContainer.style.background = 'linear-gradient(135deg, #120024 0%, #4a0a69 40%, #7b0d45 70%, #120024 100%)';
+        // Radial gradients render much more reliably in html2canvas than linear ones
+        exportContainer.style.background = 'radial-gradient(circle at center, #4a0a69 0%, #240046 50%, #120024 100%)';
+        exportContainer.style.backgroundColor = '#120024';
 
         exportContainer.style.color = '#ffffff';
         exportContainer.style.fontFamily = "'Outfit', sans-serif";
