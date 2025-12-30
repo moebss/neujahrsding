@@ -28,7 +28,7 @@ export default async (req, res) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'llama-3.1-sonar-large-128k-online',
+                model: 'sonar-pro',
                 messages: [
                     { role: 'system', content: `Du schreibst Neujahrsgrüße für 2026 auf ${lang}. Antworte NUR mit dem Gruß.` },
                     { role: 'user', content: `Name: ${name}, Verhältnis: ${relation}, Details: ${info}, Ton: ${tone}` }
