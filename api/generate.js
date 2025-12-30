@@ -1,23 +1,24 @@
-// api/generate.js
-const ipCache = new Map();
-
-export default async function handler(req, res) {
-    // CORS
+export default async (req, res) => {
+    // CORS Header setzen
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    if (req.method === 'OPTIONS') return res.status(200).end();
-    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+    // Preflight Request behandeln
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
 
-    const clientIp = req.headers['x-forwarded-for'] || '0.0.0.0';
-    const now = Date.now();
-
-    if (ipCache.has(clientIp) && (now - ipCache.get(clientIp) < 10000)) {
-        return res.status(429).json({ error: 'Limit', message: 'Bitte kurz warten.' });
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Nur POST-Anfragen sind erlaubt' });
     }
 
     const { name, relation, info, tone, lang } = req.body;
+
+    // Check, ob der API Key überhaupt da ist
+    if (!process.env.PPLX_API_KEY) {
+        return res.status(500).json({ error: 'Konfigurationsfehler: API Key fehlt in Vercel' });
+    }
 
     try {
         const response = await fetch('https://api.perplexity.ai/chat/completions', {
@@ -29,20 +30,24 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 model: 'llama-3.1-sonar-large-128k-online',
                 messages: [
-                    { role: 'system', content: `Write a festive New Year 2026 greeting in ${lang}. Use rich vocabulary and emojis. Respond ONLY with the text.` },
-                    { role: 'user', content: `Name: ${name}, Relation: ${relation}, Details: ${info || 'None'}, Style: ${tone}` }
+                    { role: 'system', content: `Du schreibst Neujahrsgrüße für 2026 auf ${lang}. Antworte NUR mit dem Gruß.` },
+                    { role: 'user', content: `Name: ${name}, Verhältnis: ${relation}, Details: ${info}, Ton: ${tone}` }
                 ],
-                max_tokens: 800,
-                temperature: 0.85
+                max_tokens: 600,
+                temperature: 0.8
             })
         });
 
         const data = await response.json();
-        if (!response.ok) throw new Error(data.error?.message || 'Perplexity API Error');
 
-        ipCache.set(clientIp, now);
+        if (!response.ok) {
+            return res.status(response.status).json({ error: `Perplexity API Error: ${data.error?.message || response.statusText}` });
+        }
+
         return res.status(200).json({ text: data.choices[0].message.content.trim() });
-    } catch (error) {
-        return res.status(500).json({ error: error.message });
+
+    } catch (err) {
+        console.error('SERVER ERROR:', err);
+        return res.status(500).json({ error: `Server-Fehler: ${err.message}` });
     }
-}
+};
