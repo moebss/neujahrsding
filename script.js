@@ -305,7 +305,10 @@ async function generateNewYearMessage(name, relation, info, tone) {
             throw new Error('API Request failed');
         }
 
-        return data.text + "\n\n✨ (Sicher generiert via Backend)";
+        // Clean up Markdown-style formatting (e.g. **bold**)
+        let cleanText = data.text.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1');
+
+        return cleanText;
     } catch (error) {
         return getLocalFallbackMessage(name, relation, info, tone);
     }
@@ -862,34 +865,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageContainer = document.querySelector('.message-container');
 
         try {
-            // Add temporary style for better capture
+            // Add temporary style for festive image capture
             const originalStyle = messageContainer.style.cssText;
-            messageContainer.style.background = 'linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%)';
-            messageContainer.style.padding = '40px';
-            messageContainer.style.borderRadius = '20px';
-            messageContainer.style.border = '2px solid rgba(255, 215, 0, 0.3)';
 
-            // Add a title to the image
+            // Premium Festive Look
+            messageContainer.style.background = 'radial-gradient(circle at center, #2a0845 0%, #1a0b2e 100%)';
+            messageContainer.style.padding = '60px 40px';
+            messageContainer.style.borderRadius = '30px';
+            messageContainer.style.border = '3px solid #ffd700';
+            messageContainer.style.boxShadow = '0 0 50px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.1)';
+            messageContainer.style.color = '#fff';
+            messageContainer.style.textAlign = 'center';
+
+            // Add decorative title with Fireworks
             const titleDiv = document.createElement('div');
-            titleDiv.textContent = '✨ Neujahrsgruß 2026 ✨';
+            titleDiv.innerHTML = '🎆 ✨ <b>Neujahrsgruß 2026</b> ✨ 🎆';
             titleDiv.style.color = '#ffd700';
-            titleDiv.style.textAlign = 'center';
-            titleDiv.style.marginBottom = '20px';
+            titleDiv.style.marginBottom = '30px';
             titleDiv.style.fontFamily = "'Outfit', sans-serif";
-            titleDiv.style.fontSize = '24px';
-            titleDiv.style.fontWeight = 'bold';
+            titleDiv.style.fontSize = '32px';
+            titleDiv.style.textShadow = '0 0 15px rgba(255, 215, 0, 0.6)';
+
+            // Make text larger and centered for the image
+            const textContent = messageContainer.querySelector('.message-text') || messageContainer;
+            const originalFontSize = textContent.style.fontSize;
+            textContent.style.fontSize = '22px';
+            textContent.style.lineHeight = '1.6';
+            textContent.style.fontFamily = "'Outfit', sans-serif";
+
             messageContainer.insertBefore(titleDiv, messageContainer.firstChild);
 
             const canvas = await html2canvas(messageContainer, {
-                scale: 2, // Higher resolution
-                backgroundColor: null, // Transparent background
+                scale: 2, // High resolution (Retina)
+                backgroundColor: '#110F1A', // Dark background to prevent transparency issues
                 logging: false,
                 useCORS: true
             });
 
-            // Remove title and restore styles
+            // Restore original state
             titleDiv.remove();
             messageContainer.style.cssText = originalStyle;
+            if (textContent !== messageContainer) textContent.style.fontSize = originalFontSize;
 
             // Trigger download
             const link = document.createElement('a');
