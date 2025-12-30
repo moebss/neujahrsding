@@ -36,6 +36,7 @@ const translations = {
         'btn-copy': 'Text kopieren',
         'btn-whatsapp': 'Per WhatsApp teilen',
         'btn-email': 'Per E-Mail senden',
+        'btn-download': 'Als Bild speichern',
         'btn-new': '🎊 Neuen Gruß erstellen',
 
         // Footer
@@ -69,6 +70,7 @@ const translations = {
         'btn-copy': 'Copy Text',
         'btn-whatsapp': 'Share via WhatsApp',
         'btn-email': 'Send via Email',
+        'btn-download': 'Save as Image',
         'btn-new': '🎊 Create New Greeting',
         'footer': 'Made with 💛 for 2026 | Happy New Year! 🎆'
     },
@@ -100,6 +102,7 @@ const translations = {
         'btn-copy': 'Metni Kopyala',
         'btn-whatsapp': 'WhatsApp ile Paylaş',
         'btn-email': 'E-posta ile Gönder',
+        'btn-download': 'Resim Olarak Kaydet',
         'btn-new': '🎊 Yeni Kutlama Oluştur',
         'footer': 'Made with 💛 for 2026 | Mutlu Yıllar! 🎆'
     },
@@ -131,6 +134,7 @@ const translations = {
         'btn-copy': 'Copiar Texto',
         'btn-whatsapp': 'Compartir por WhatsApp',
         'btn-email': 'Enviar por Correo',
+        'btn-download': 'Guardar como Imagen',
         'btn-new': '🎊 Crear Nuevo Saludo',
         'footer': 'Made with 💛 for 2026 | ¡Feliz Año Nuevo! 🎆'
     },
@@ -162,6 +166,7 @@ const translations = {
         'btn-copy': 'Copier le Texte',
         'btn-whatsapp': 'Partager via WhatsApp',
         'btn-email': 'Envoyer par Email',
+        'btn-download': 'Enregistrer comme Image',
         'btn-new': '🎊 Créer un Nouveau Vœu',
         'footer': 'Made with 💛 for 2026 | Bonne Année! 🎆'
     },
@@ -193,6 +198,7 @@ const translations = {
         'btn-copy': 'Copia Testo',
         'btn-whatsapp': 'Condividi via WhatsApp',
         'btn-email': 'Invia via Email',
+        'btn-download': 'Salva come Immagine',
         'btn-new': '🎊 Crea Nuovo Augurio',
         'footer': 'Made with 💛 for 2026 | Felice Anno Nuovo! 🎆'
     },
@@ -222,9 +228,10 @@ const translations = {
         'btn-generate': '✨ Генерирай Новогодишно Пожелание ✨',
         'output-title': 'Вашето Лично Пожелание 🎉',
         'btn-copy': 'Копирай Текст',
-        'btn-whatsapp': 'Сподели в WhatsApp',
-        'btn-email': 'Изпрати по Имейл',
-        'btn-new': '🎊 Създай Ново Пожелание',
+        'btn-whatsapp': 'Сподели чрез WhatsApp',
+        'btn-email': 'Изпрати чрез имейл',
+        'btn-download': 'Запази като изображение',
+        'btn-new': '🎊 Създай нов поздрав',
         'footer': 'Made with 💛 for 2026 | Честита Нова Година! 🎆'
     }
 };
@@ -849,6 +856,52 @@ document.addEventListener('DOMContentLoaded', () => {
         const body = encodeURIComponent(currentMessage);
         window.location.href = `mailto:?subject=${subject}&body=${body}`;
     });
+
+    // Download as Image
+    document.getElementById('downloadBtn').addEventListener('click', async () => {
+        const messageContainer = document.querySelector('.message-container');
+
+        try {
+            // Add temporary style for better capture
+            const originalStyle = messageContainer.style.cssText;
+            messageContainer.style.background = 'linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%)';
+            messageContainer.style.padding = '40px';
+            messageContainer.style.borderRadius = '20px';
+            messageContainer.style.border = '2px solid rgba(255, 215, 0, 0.3)';
+
+            // Add a title to the image
+            const titleDiv = document.createElement('div');
+            titleDiv.textContent = '✨ Neujahrsgruß 2026 ✨';
+            titleDiv.style.color = '#ffd700';
+            titleDiv.style.textAlign = 'center';
+            titleDiv.style.marginBottom = '20px';
+            titleDiv.style.fontFamily = "'Outfit', sans-serif";
+            titleDiv.style.fontSize = '24px';
+            titleDiv.style.fontWeight = 'bold';
+            messageContainer.insertBefore(titleDiv, messageContainer.firstChild);
+
+            const canvas = await html2canvas(messageContainer, {
+                scale: 2, // Higher resolution
+                backgroundColor: null, // Transparent background
+                logging: false,
+                useCORS: true
+            });
+
+            // Remove title and restore styles
+            titleDiv.remove();
+            messageContainer.style.cssText = originalStyle;
+
+            // Trigger download
+            const link = document.createElement('a');
+            link.download = 'neujahrsgruss-2026.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        } catch (err) {
+            console.error('Image generation failed:', err);
+            alert('Fehler beim Erstellen des Bildes.');
+        }
+    });
+
 
     // Create new greeting
     newGreetingBtn.addEventListener('click', () => {
