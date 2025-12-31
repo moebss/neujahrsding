@@ -56,6 +56,10 @@ window.uiTranslations = {
         'newsletter-placeholder': 'deine@email.com',
         'btn-subscribe': '🔔 Erinnern lassen',
         'newsletter-success': 'Danke! Wir erinnern dich rechtzeitig. 💌',
+        'newsletter-privacy': 'Ich stimme zu, dass meine E-Mail-Adresse gespeichert wird, um mich an festliche Anlässe zu erinnern. Abmeldung jederzeit möglich.',
+
+        // Ko-fi
+        'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕',
 
         // Ko-fi
         'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕'
@@ -101,6 +105,10 @@ window.uiTranslations = {
         'newsletter-placeholder': 'your@email.com',
         'btn-subscribe': '🔔 Remind me',
         'newsletter-success': 'Thanks! We will remind you in time. 💌',
+        'newsletter-privacy': 'I agree that my email address will be stored to remind me of festive occasions. Unsubscribe possible at any time.',
+
+        // Ko-fi
+        'footer-coffee': 'Enjoying the app? Buy me a coffee ☕',
 
         // Ko-fi
         'footer-coffee': 'Enjoying the app? Buy me a coffee ☕'

@@ -31,27 +31,51 @@
     margin-bottom: var(--space-md);
 }
 
-.newsletter-form {
-    display: flex;
-    gap: var(--space-sm);
-    max-width: 500px;
+.newsletter-form-container {
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.newsletter-form input[type="email"] {
+.newsletter-input-group {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.newsletter-input-group input[type="email"] {
     flex: 1;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 0;
-    /* Override generic margin */
     color: white;
     padding: 10px 15px;
     border-radius: var(--radius-sm);
 }
 
-.newsletter-form input[type="email"]:focus {
+.newsletter-input-group input[type="email"]:focus {
     background: rgba(0, 0, 0, 0.5);
     border-color: var(--color-gold);
+}
+
+.newsletter-privacy-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    margin-top: var(--space-sm);
+    color: var(--color-gray);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.newsletter-privacy-box input {
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.newsletter-privacy-box label {
+    cursor: pointer;
+    user-select: none;
 }
 
 .btn-newsletter {
