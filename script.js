@@ -661,6 +661,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ===========================
+    // SPEECH & EMOJI FEATURES
+    // ===========================
+
+    // 1. Speech-to-Text (STT)
+    const micBtn = document.getElementById('micBtn');
+    const additionalInfo = document.getElementById('additionalInfo');
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        micBtn.addEventListener('click', () => {
+            if (micBtn.classList.contains('recording')) {
+                recognition.stop();
+            } else {
+                recognition.lang = currentLanguage === 'de' ? 'de-DE' : 'en-US';
+                recognition.start();
+                micBtn.classList.add('recording');
+                showToast(currentLanguage === 'de' ? 'Ich höre zu... 🎤' : 'Listening... 🎤');
+            }
+        });
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            additionalInfo.value += (additionalInfo.value ? ' ' : '') + transcript;
+            micBtn.classList.remove('recording');
+        };
+
+        recognition.onerror = () => {
+            micBtn.classList.remove('recording');
+            showToast(currentLanguage === 'de' ? 'Fehler bei der Erkennung.' : 'Recognition error.');
+        };
+
+        recognition.onend = () => micBtn.classList.remove('recording');
+    } else {
+        micBtn.style.display = 'none';
+    }
+
+    // 2. Text-to-Speech (TTS)
+    const ttsBtn = document.getElementById('ttsBtn');
+    ttsBtn.addEventListener('click', () => {
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.cancel();
+            return;
+        }
+
+        const msg = new SpeechSynthesisUtterance(currentMessage);
+
+        // Find best voice for language
+        const voices = window.speechSynthesis.getVoices();
+        const targetLang = currentLanguage === 'de' ? 'de-DE' : 'en-US';
+        msg.voice = voices.find(v => v.lang.includes(targetLang)) || voices[0];
+        msg.rate = 1.0;
+
+        window.speechSynthesis.speak(msg);
+        showToast(currentLanguage === 'de' ? 'Lese vor... 🔊' : 'Speaking... 🔊');
+    });
+
+    // 3. Emoji Shortcuts
+    document.querySelectorAll('.emoji-tap').forEach(emoji => {
+        emoji.addEventListener('click', () => {
+            additionalInfo.value += emoji.textContent;
+            additionalInfo.focus();
+        });
+    });
+
 
     // Form submission
     form.addEventListener('submit', async (e) => {

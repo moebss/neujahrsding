@@ -119,13 +119,22 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="additionalInfo">
-                            <span class="icon">🎯</span>
-                            <span data-i18n="label-info">Besondere Infos (optional)</span>
-                        </label>
-                        <textarea id="additionalInfo" name="additionalInfo" rows="3"
-                            data-i18n-placeholder="placeholder-info"
-                            placeholder="z.B. Hobbys, gemeinsame Erlebnisse im Jahr, besondere Wünsche für 2026..."></textarea>
+                        <label for="additionalInfo" data-i18n="form-info">Zusätzliche Infos (Was ist dieses Jahr
+                            passiert?)</label>
+                        <div class="input-with-action">
+                            <textarea id="additionalInfo" data-i18n-placeholder="form-info-placeholder"
+                                placeholder="Z.B. Neuer Job, Umzug, Baby..."></textarea>
+                            <button type="button" id="micBtn" class="mic-btn" title="Diktieren">🎤</button>
+                        </div>
+                        <div class="emoji-shortcuts">
+                            <span class="emoji-tap">🍀</span>
+                            <span class="emoji-tap">🥂</span>
+                            <span class="emoji-tap">🎆</span>
+                            <span class="emoji-tap">🏠</span>
+                            <span class="emoji-tap">👶</span>
+                            <span class="emoji-tap">💼</span>
+                            <span class="emoji-tap">✨</span>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -153,10 +162,11 @@
             <section class="card output-card hidden" id="outputSection">
                 <h2 data-i18n="output-title">Dein persönlicher Gruß 🎉</h2>
 
-                <div class="message-container">
-                    <div class="message-text" id="generatedMessage">
-                        <!-- Generated message will appear here -->
+                <div class="output-card">
+                    <div class="message-header">
+                        <button id="ttsBtn" class="tts-btn" title="Vorlesen lassen">🔊</button>
                     </div>
+                    <div id="generatedMessage" class="message-text"></div>
                 </div>
 
                 <div class="action-buttons">
