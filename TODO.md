@@ -15,7 +15,7 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 - [ ] **Sound-Effekte:** Dezente Sound-Effekte beim Generieren (Zauberstab-Sound) oder beim Herunterladen.
 
 ## ✅ Erledigt
-- [x] **Impressum vervollständigen:** Alexander Rheindorf, Pankratiusstraße 31, 50129 Bergheim eingetragen.
+- [x] **Impressum & Datenschutz vervollständigen:** Alexander Rheindorf eingetragen. Vercel, Perplexity AI und Supabase als Datenverarbeiter ergänzt.
 - [x] **Social Media Preview:** Hochwertiges Vorschaubild (`og-image.png`) erstellt und eingebunden.
 - [x] Internationalisierung (i18n) Grundgerüst.
 - [x] KI-Anbindung (Perplexity API) mit Sprach-Support.
