@@ -13,6 +13,28 @@ export default async (req, res) => {
         return res.status(405).json({ error: 'Nur POST-Anfragen sind erlaubt' });
     }
 
+    // --- SIMPLE RATE LIMITING (In-Memory) ---
+    // Note: In serverless, memory is not persistent across all calls, but this catches burst attacks on the same instance.
+    // For production scaling, use KV stores (like Vercel KV).
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const rateLimitMap = global.rateLimitMap || new Map();
+    global.rateLimitMap = rateLimitMap;
+
+    const now = Date.now();
+    const windowMs = 60 * 1000; // 1 Minute
+    const maxRequests = 10; // Max requests per minute
+
+    const requestLog = rateLimitMap.get(ip) || [];
+    const recentRequests = requestLog.filter(time => time > now - windowMs);
+
+    if (recentRequests.length >= maxRequests) {
+        return res.status(429).json({ error: 'Zu viele Anfragen. Bitte warte eine Minute. ⏳' });
+    }
+
+    recentRequests.push(now);
+    rateLimitMap.set(ip, recentRequests);
+    // ----------------------------------------
+
     const { name, relation, info, tone, lang } = req.body;
 
     // Check, ob der API Key überhaupt da ist

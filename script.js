@@ -311,6 +311,11 @@ async function generateNewYearMessage(name, relation, info, tone) {
         // Remove generic signatures if AI adds them despite instructions
         cleanText = cleanText.replace(/\n\s*[-–]?\s*(Dein Name|Dein Absender|Ihr Name|Your Name|\[.*?\])\s*$/i, '').trim();
 
+        // Save to History (if function exists)
+        if (typeof saveToHistory === 'function') {
+            saveToHistory(cleanText, name, currentLanguage);
+        }
+
         return cleanText;
     } catch (error) {
         return getLocalFallbackMessage(name, relation, info, tone);
@@ -976,6 +981,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    // ===========================
+    // HISTORY FUNCTIONALITY
+    // ===========================
+
+    const HISTORY_KEY = 'greeting_history';
+    const MAX_HISTORY_ITEMS = 5;
+
+    function loadHistory() {
+        const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+        renderHistory(history);
+    }
+
+    function saveToHistory(text, name, lang) {
+        let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+
+        // Add new item to the beginning
+        history.unshift({
+            text: text,
+            name: name,
+            lang: lang,
+            date: new Date().toISOString()
+        });
+
+        // Limit to max items
+        if (history.length > MAX_HISTORY_ITEMS) {
+            history = history.slice(0, MAX_HISTORY_ITEMS);
+        }
+
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        renderHistory(history);
+    }
+
+    function renderHistory(history) {
+        const historyList = document.getElementById('historyList');
+        const sidebar = document.getElementById('historySidebar');
+
+        if (!historyList || !sidebar) return;
+
+        if (history.length === 0) {
+            const emptyMsg = translations[currentLanguage]['history-empty'] || 'Noch keine Grüße erstellt.';
+            historyList.innerHTML = `<p class="empty-history" data-i18n="history-empty">${emptyMsg}</p>`;
+            sidebar.classList.remove('hidden');
+            return;
+        }
+
+        sidebar.classList.remove('hidden');
+        sidebar.classList.add('fade-in');
+
+        historyList.innerHTML = '';
+
+        history.forEach((item) => {
+            const div = document.createElement('div');
+            div.className = 'history-item';
+
+            const flagUrl = getFlagForLang(item.lang);
+
+            div.innerHTML = `
+            <div class="history-header">
+                <span class="history-name">${item.name}</span>
+                <img src="${flagUrl}" width="16" height="12" style="border-radius: 2px;">
+            </div>
+            <div class="history-text" style="font-family: inherit;">${item.text}</div>
+        `;
+
+            div.addEventListener('click', () => {
+                const messageContainer = document.querySelector('.message-text');
+                messageContainer.innerText = item.text;
+                document.getElementById('recipientName').value = item.name;
+
+                document.getElementById('outputSection').classList.remove('hidden');
+                document.getElementById('inputSection').classList.add('hidden');
+
+                // Scroll to result on mobile
+                document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            historyList.appendChild(div);
+        });
+    }
+
+    function getFlagForLang(langCode) {
+        const map = {
+            'de': 'de', 'en': 'gb', 'tr': 'tr', 'es': 'es', 'fr': 'fr', 'it': 'it', 'bg': 'bg'
+        };
+        return `https://flagcdn.com/w20/${map[langCode] || 'de'}.png`;
+    }
+
+    // Clear history
     // Create new greeting
     newGreetingBtn.addEventListener('click', () => {
         outputSection.classList.add('hidden');

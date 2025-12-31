@@ -54,105 +54,120 @@
         <p class="subtitle" data-i18n="header-subtitle">Erstelle einzigartige, herzliche Neujahrswünsche in Sekunden</p>
     </header>
 
-    <main class="container">
-        <!-- Input Form -->
-        <section class="card" id="inputSection">
-            <h2 data-i18n="form-title">Erzähl mir mehr 🎊</h2>
+    <main class="container with-sidebar">
+        <div class="main-content">
+            <!-- Input Form -->
+            <section class="card" id="inputSection">
+                <!-- (Content remains same) -->
+                <h2 data-i18n="form-title">Erzähl mir mehr 🎊</h2>
 
-            <form id="greetingForm">
-                <div class="form-group">
-                    <label for="recipientName">
-                        <span class="icon">👤</span>
-                        <span data-i18n="label-name">Name der Person</span>
-                    </label>
-                    <input type="text" id="recipientName" name="recipientName" data-i18n-placeholder="placeholder-name"
-                        placeholder="z.B. Anna, Michael, Familie Schmidt..." required>
+                <form id="greetingForm">
+                    <div class="form-group">
+                        <label for="recipientName">
+                            <span class="icon">👤</span>
+                            <span data-i18n="label-name">Name der Person</span>
+                        </label>
+                        <input type="text" id="recipientName" name="recipientName"
+                            data-i18n-placeholder="placeholder-name"
+                            placeholder="z.B. Anna, Michael, Familie Schmidt..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relationship">
+                            <span class="icon">💝</span>
+                            <span data-i18n="label-relationship">Beziehung / Verhältnis</span>
+                        </label>
+                        <select id="relationship" name="relationship" required>
+                            <option value="" data-i18n="option-select">Bitte wählen...</option>
+                            <option value="friend" data-i18n="option-friend">Freundschaft</option>
+                            <option value="romantic" data-i18n="option-romantic">Romantisch / Partner</option>
+                            <option value="family" data-i18n="option-family">Familie</option>
+                            <option value="colleague" data-i18n="option-colleague">Arbeitskollege/in</option>
+                            <option value="boss" data-i18n="option-boss">Chef/in</option>
+                            <option value="acquaintance" data-i18n="option-acquaintance">Bekannte/r</option>
+                            <option value="mentor" data-i18n="option-mentor">Mentor/in</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">
+                            <span class="icon">🎯</span>
+                            <span data-i18n="label-info">Besondere Infos (optional)</span>
+                        </label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="3"
+                            data-i18n-placeholder="placeholder-info"
+                            placeholder="z.B. Hobbys, gemeinsame Erlebnisse im Jahr, besondere Wünsche für 2026..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tone">
+                            <span class="icon">🎨</span>
+                            <span data-i18n="label-tone">Stil / Tonalität</span>
+                        </label>
+                        <select id="tone" name="tone" required>
+                            <option value="warm" data-i18n="tone-warm">Warm & Herzlich</option>
+                            <option value="funny" data-i18n="tone-funny">Humorvoll & Lustig</option>
+                            <option value="formal" data-i18n="tone-formal">Formell & Professionell</option>
+                            <option value="poetic" data-i18n="tone-poetic">Poetisch & Kreativ</option>
+                            <option value="short" data-i18n="tone-short">Kurz & Knackig</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-generate" id="generateBtn">
+                        <span class="btn-text" data-i18n="btn-generate">✨ Neujahrsgruß generieren ✨</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Output Section -->
+            <section class="card output-card hidden" id="outputSection">
+                <h2 data-i18n="output-title">Dein persönlicher Gruß 🎉</h2>
+
+                <div class="message-container">
+                    <div class="message-text" id="generatedMessage">
+                        <!-- Generated message will appear here -->
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="relationship">
-                        <span class="icon">💝</span>
-                        <span data-i18n="label-relationship">Beziehung / Verhältnis</span>
-                    </label>
-                    <select id="relationship" name="relationship" required>
-                        <option value="" data-i18n="option-select">Bitte wählen...</option>
-                        <option value="friend" data-i18n="option-friend">Freundschaft</option>
-                        <option value="romantic" data-i18n="option-romantic">Romantisch / Partner</option>
-                        <option value="family" data-i18n="option-family">Familie</option>
-                        <option value="colleague" data-i18n="option-colleague">Arbeitskollege/in</option>
-                        <option value="boss" data-i18n="option-boss">Chef/in</option>
-                        <option value="acquaintance" data-i18n="option-acquaintance">Bekannte/r</option>
-                        <option value="mentor" data-i18n="option-mentor">Mentor/in</option>
-                    </select>
+                <div class="action-buttons">
+                    <button class="btn-action btn-copy" id="copyBtn">
+                        <span class="icon">📋</span>
+                        <span data-i18n="btn-copy">Text kopieren</span>
+                    </button>
+
+                    <button class="btn-action btn-whatsapp" id="whatsappBtn">
+                        <span class="icon">💬</span>
+                        <span data-i18n="btn-whatsapp">Per WhatsApp teilen</span>
+                    </button>
+
+                    <button class="btn-action btn-email" id="emailBtn">
+                        <span class="icon">📧</span>
+                        <span data-i18n="btn-email">Per E-Mail senden</span>
+                    </button>
+
+                    <button class="btn-action btn-download" id="downloadBtn">
+                        <span class="icon">📸</span>
+                        <span data-i18n="btn-download">Als Bild speichern</span>
+                    </button>
                 </div>
 
-                <div class="form-group">
-                    <label for="additionalInfo">
-                        <span class="icon">🎯</span>
-                        <span data-i18n="label-info">Besondere Infos (optional)</span>
-                    </label>
-                    <textarea id="additionalInfo" name="additionalInfo" rows="3"
-                        data-i18n-placeholder="placeholder-info"
-                        placeholder="z.B. Hobbys, gemeinsame Erlebnisse im Jahr, besondere Wünsche für 2026..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="tone">
-                        <span class="icon">🎨</span>
-                        <span data-i18n="label-tone">Stil / Tonalität</span>
-                    </label>
-                    <select id="tone" name="tone" required>
-                        <option value="warm" data-i18n="tone-warm">Warm & Herzlich</option>
-                        <option value="funny" data-i18n="tone-funny">Humorvoll & Lustig</option>
-                        <option value="formal" data-i18n="tone-formal">Formell & Professionell</option>
-                        <option value="poetic" data-i18n="tone-poetic">Poetisch & Kreativ</option>
-                        <option value="short" data-i18n="tone-short">Kurz & Knackig</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn-generate" id="generateBtn">
-                    <span class="btn-text" data-i18n="btn-generate">✨ Neujahrsgruß generieren ✨</span>
-                    <span class="btn-shine"></span>
+                <button class="btn-new" id="newGreetingBtn">
+                    <span data-i18n="btn-new">🎊 Neuen Gruß erstellen</span>
                 </button>
-            </form>
-        </section>
+            </section>
+        </div> <!-- Close main-content -->
 
-        <!-- Output Section -->
-        <section class="card output-card hidden" id="outputSection">
-            <h2 data-i18n="output-title">Dein persönlicher Gruß 🎉</h2>
-
-            <div class="message-container">
-                <div class="message-text" id="generatedMessage">
-                    <!-- Generated message will appear here -->
-                </div>
+        <!-- History Sidebar -->
+        <aside class="sidebar hidden" id="historySidebar">
+            <h3 data-i18n="history-title">Deine letzten Grüße 📜</h3>
+            <div id="historyList" class="history-list">
+                <!-- History items will be injected here -->
+                <p class="empty-history" data-i18n="history-empty">Noch keine Grüße erstellt.</p>
             </div>
+            <button id="clearHistoryBtn" class="btn-clear-history" data-i18n="history-clear">Verlauf löschen</button>
+        </aside>
 
-            <div class="action-buttons">
-                <button class="btn-action btn-copy" id="copyBtn">
-                    <span class="icon">📋</span>
-                    <span data-i18n="btn-copy">Text kopieren</span>
-                </button>
-
-                <button class="btn-action btn-whatsapp" id="whatsappBtn">
-                    <span class="icon">💬</span>
-                    <span data-i18n="btn-whatsapp">Per WhatsApp teilen</span>
-                </button>
-
-                <button class="btn-action btn-email" id="emailBtn">
-                    <span class="icon">📧</span>
-                    <span data-i18n="btn-email">Per E-Mail senden</span>
-                </button>
-
-                <button class="btn-action btn-download" id="downloadBtn">
-                    <span class="icon">📸</span>
-                    <span data-i18n="btn-download">Als Bild speichern</span>
-                </button>
-            </div>
-
-            <button class="btn-new" id="newGreetingBtn">
-                <span data-i18n="btn-new">🎊 Neuen Gruß erstellen</span>
-            </button>
-        </section>
     </main>
 
     <footer>
