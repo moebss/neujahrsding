@@ -61,6 +61,12 @@ window.uiTranslations = {
         // Ko-fi
         'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕',
 
+        // Smart Feedback
+        'thinking-1': '🪄 Suche nach magischen Worten...',
+        'thinking-2': '✨ Poliere die Neujahrswünsche...',
+        'thinking-3': '🌟 Mische eine Prise Glück unter...',
+        'thinking-4': '🎆 Bereite das Feuerwerk vor...',
+
         // Ko-fi
         'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕'
     },

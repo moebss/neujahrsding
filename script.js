@@ -678,7 +678,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         submitBtn.disabled = true;
         formCard.classList.add('thinking-glow');
-        document.querySelector('.btn-text').textContent = currentLanguage === 'de' ? '🪄 Generiere Wunder...' : '🪄 Generating Magic...';
+
+        const btnTextEl = document.querySelector('.btn-text');
+        const thinkingMessages = [
+            translations[currentLanguage]['thinking-1'] || '🪄 ...',
+            translations[currentLanguage]['thinking-2'] || '✨ ...',
+            translations[currentLanguage]['thinking-3'] || '🌟 ...',
+            translations[currentLanguage]['thinking-4'] || '🎆 ...'
+        ];
+
+        let msgIndex = 0;
+        btnTextEl.textContent = thinkingMessages[0];
+        const thinkingInterval = setInterval(() => {
+            msgIndex = (msgIndex + 1) % thinkingMessages.length;
+            btnTextEl.textContent = thinkingMessages[msgIndex];
+        }, 2000);
 
         try {
             // Generate message with AI
@@ -697,6 +711,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Ups! Etwas ist schief gelaufen. Bitte versuch es nochmal.');
         } finally {
             // Restore button
+            clearInterval(thinkingInterval);
             submitBtn.disabled = false;
             formCard.classList.remove('thinking-glow');
             document.querySelector('.btn-text').textContent = originalBtnText;
@@ -793,21 +808,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${messageText}
             </div>
             
-            <div style="
-                font-size: 18px; 
-                color: rgba(255, 255, 255, 0.9); 
-                text-transform: uppercase; 
-                letter-spacing: 4px; 
-                font-weight: 600; 
-                border-top: 1px solid rgba(255,255,255,0.3); 
-                padding-top: 30px; 
-                margin-top: auto;
-                width: 50%;">
-                ✨ Erstellt auf neujahrsgruss2026.de ✨
-                <br>
-                <span style="font-size: 12px; opacity: 0.6; text-transform: none; letter-spacing: 1px; display: block; margin-top: 10px;">
-                    Ein Projekt von Alexander Rheindorf
-                </span>
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 30px; margin-top: auto;">
+                <div style="text-align: left;">
+                    <span style="font-size: 18px; color: rgba(255, 255, 255, 0.9); text-transform: uppercase; letter-spacing: 4px; font-weight: 600; display: block;">
+                        ✨ Erstellt auf neujahrsgruss2026.de ✨
+                    </span>
+                    <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 5px;">
+                        Ein Projekt von Alexander Rheindorf
+                    </span>
+                </div>
+                <div style="background: white; padding: 10px; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.2);">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://neujahrsgruss2026.de&bgcolor=ffffff&color=000000" 
+                         style="width: 80px; height: 80px; display: block;" crossorigin="anonymous">
+                </div>
             </div>
         `;
 
