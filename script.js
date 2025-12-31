@@ -654,6 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSoundEffects();
     initViralLoop();
     initExportStyles();
+    initNewsletterModal();
 
     // Initialize language from localStorage or default to 'de'
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
@@ -787,6 +788,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Scroll to output
             outputSection.scrollIntoView({ behavior: 'smooth' });
+
+            // Show Newsletter Modal after a short delay
+            setTimeout(() => {
+                showNewsletterModal();
+            }, 3000);
         } catch (err) {
             alert('Ups! Etwas ist schief gelaufen. Bitte versuch es nochmal.');
         } finally {
@@ -973,6 +979,76 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.innerHTML = originalText;
             }
         });
+    }
+
+    function initNewsletterModal() {
+        const modal = document.getElementById('newsletterModal');
+        const closeBtn = document.getElementById('closeModal');
+        const modalForm = document.getElementById('modalNewsletterForm');
+        const modalSuccess = document.getElementById('modalNewsletterSuccess');
+
+        if (!modal) return;
+
+        // Close modal listeners
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.add('hidden');
+        });
+
+        // Modal Form Handling
+        if (modalForm) {
+            modalForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('modalNewsletterEmail').value;
+
+                const btn = modalForm.querySelector('button');
+                const originalText = btn.innerHTML;
+
+                btn.disabled = true;
+                btn.innerHTML = '<span class="sparkle">⏳</span> ...';
+
+                try {
+                    const response = await fetch('/api/subscribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) throw new Error(data.error || 'Subscription failed');
+
+                    modalForm.style.display = 'none';
+                    modalSuccess.classList.remove('hidden');
+                    localStorage.setItem('newsletter_subscribed', 'true');
+                    showToast(currentLanguage === 'de' ? 'Erfolgreich eingetragen! 💌' : 'Successfully subscribed! 💌');
+
+                    // Close modal after success after a short delay
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                    }, 3000);
+
+                } catch (err) {
+                    alert('Ups! Das hat nicht geklappt. Bitte versuche es später noch einmal.');
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            });
+        }
+    }
+
+    window.showNewsletterModal = () => {
+        // Don't show if already subscribed or recently shown
+        if (localStorage.getItem('newsletter_subscribed') === 'true') return;
+
+        const modal = document.getElementById('newsletterModal');
+        if (modal) {
+            modal.classList.remove('hidden');
+            playMagicSound(); // Add a nice sound effect
+        }
     }
 
     // ===========================

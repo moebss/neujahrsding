@@ -25,6 +25,7 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 - [x] **Social Media Preview:** Hochwertiges Vorschaubild (`og-image.png`) erstellt und eingebunden.
 - [x] Internationalisierung (i18n) Grundgerüst.
 - [x] KI-Anbindung (Perplexity API) mit Sprach-Support.
+- [x] Newsletter-Popup nach Generierung: Erhöht die Conversion-Rate für grussgenerator.de.
 - [x] "Als Bild speichern" Funktion (html2canvas).
 - [x] Favoriten-Verlauf (LocalStorage).
 - [x] Newsletter-Backend (Supabase).

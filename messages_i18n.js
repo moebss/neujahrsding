@@ -71,7 +71,13 @@ window.uiTranslations = {
         'style-classic': 'Klassisch',
         'style-elegant': 'Elegant',
         'style-playful': 'Verspielt',
-        'btn-viral': 'App teilen 🚀'
+        'btn-viral': 'App teilen 🚀',
+
+        // Modal Newsletter
+        'modal-newsletter-title': 'Meld dich jetzt schon mal an!',
+        'modal-newsletter-subtitle': 'Erfahre vor allen anderen, wann <strong>grussgenerator.de</strong> online geht. In Zukunft hast du immer den richtigen Text für jeden Anlass parat!',
+        'modal-btn-subscribe': '🔔 Jetzt anmelden',
+        'modal-success': 'Hervorragend! Du bist dabei. 💌'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -117,7 +123,13 @@ window.uiTranslations = {
         'newsletter-privacy': 'I agree that my email address will be stored to remind me of festive occasions. Unsubscribe possible at any time.',
 
         // Ko-fi
-        'footer-coffee': 'Enjoying the app? Buy me a coffee ☕'
+        'btn-viral': 'Share App 🚀',
+
+        // Modal Newsletter
+        'modal-newsletter-title': 'Sign up now!',
+        'modal-newsletter-subtitle': 'Be the first to know when <strong>grussgenerator.de</strong> goes live. In the future, you\'ll always have the right text for every occasion!',
+        'modal-btn-subscribe': '🔔 Sign up now',
+        'modal-success': 'Excellent! You\'re in. 💌'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',

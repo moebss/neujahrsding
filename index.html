@@ -267,6 +267,37 @@
         </p>
     </footer>
 
+    <!-- Newsletter Modal -->
+    <div id="newsletterModal" class="modal-overlay hidden">
+        <div class="modal-content card">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">💌</span>
+                <h3 data-i18n="modal-newsletter-title">Meld dich jetzt schon mal an!</h3>
+            </div>
+            <p data-i18n="modal-newsletter-subtitle">Erfahre vor allen anderen, wann <strong>grussgenerator.de</strong>
+                online geht. In Zukunft hast du immer den richtigen Text für jeden Anlass parat!</p>
+
+            <form id="modalNewsletterForm" class="sidebar-newsletter-form">
+                <input type="email" id="modalNewsletterEmail" data-i18n-placeholder="newsletter-placeholder"
+                    placeholder="deine@email.com" required>
+                <button type="submit" class="btn-newsletter-sidebar">
+                    <span data-i18n="modal-btn-subscribe">🔔 Jetzt anmelden</span>
+                </button>
+
+                <div class="newsletter-privacy-box">
+                    <input type="checkbox" id="modalNewsletterPrivacy" required>
+                    <label for="modalNewsletterPrivacy" data-i18n="newsletter-privacy">
+                        Ich stimme zu...
+                    </label>
+                </div>
+            </form>
+            <p id="modalNewsletterSuccess" class="success-message hidden" data-i18n="modal-success">
+                Hervorragend! Du bist dabei. 💌
+            </p>
+        </div>
+    </div>
+
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="messages_i18n.js"></script>
     <script src="script.js"></script>
