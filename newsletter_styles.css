@@ -44,6 +44,9 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 0;
     /* Override generic margin */
+    color: white;
+    padding: 10px 15px;
+    border-radius: var(--radius-sm);
 }
 
 .newsletter-form input[type="email"]:focus {
@@ -75,6 +78,30 @@
     font-weight: bold;
     margin-top: var(--space-md) !important;
     animation: fadeIn 0.5s ease;
+}
+
+/* ===========================
+   KO-FI BUTTON STYLES
+   =========================== */
+.kofi-link {
+    display: inline-block;
+    background-color: #ff5f5f;
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255, 95, 95, 0.4);
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    border: 2px solid transparent;
+}
+
+.kofi-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: #ff3e3e;
+    box-shadow: 0 8px 25px rgba(255, 95, 95, 0.6);
+    border-color: white;
 }
 
 @keyframes fadeIn {

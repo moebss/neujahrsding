@@ -55,7 +55,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Erhalte rechtzeitig Erinnerungen für Ostern, Weihnachten & Co.',
         'newsletter-placeholder': 'deine@email.com',
         'btn-subscribe': '🔔 Erinnern lassen',
-        'newsletter-success': 'Danke! Wir erinnern dich rechtzeitig. 💌'
+        'newsletter-success': 'Danke! Wir erinnern dich rechtzeitig. 💌',
+
+        // Ko-fi
+        'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -97,7 +100,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Get timely reminders for Easter, Christmas & Co.',
         'newsletter-placeholder': 'your@email.com',
         'btn-subscribe': '🔔 Remind me',
-        'newsletter-success': 'Thanks! We will remind you in time. 💌'
+        'newsletter-success': 'Thanks! We will remind you in time. 💌',
+
+        // Ko-fi
+        'footer-coffee': 'Enjoying the app? Buy me a coffee ☕'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',
@@ -139,7 +145,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Paskalya, Noel ve diğer günler için zamanında hatırlatıcı al.',
         'newsletter-placeholder': 'senin@email.com',
         'btn-subscribe': '🔔 Hatırlat',
-        'newsletter-success': 'Teşekkürler! Sana zamanında hatırlatacağız. 💌'
+        'newsletter-success': 'Teşekkürler! Sana zamanında hatırlatacağız. 💌',
+
+        // Ko-fi
+        'footer-coffee': 'Uygulamayı beğendin mi? Bana bir kahve ısmarla ☕'
     },
     es: {
         'header-title': 'Tu Saludo de Año Nuevo Personal 2026',
@@ -181,7 +190,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Recibe recordatorios a tiempo para Pascua, Navidad y más.',
         'newsletter-placeholder': 'tu@email.com',
         'btn-subscribe': '🔔 Recordarme',
-        'newsletter-success': '¡Gracias! Te avisaremos a tiempo. 💌'
+        'newsletter-success': '¡Gracias! Te avisaremos a tiempo. 💌',
+
+        // Ko-fi
+        'footer-coffee': '¿Te gusta la app? Invítame a un café ☕'
     },
     fr: {
         'header-title': 'Votre Vœu de Nouvel An Personnel 2026',
@@ -223,7 +235,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Recevez des rappels en temps voulu pour Pâques, Noël, etc.',
         'newsletter-placeholder': 'votre@email.com',
         'btn-subscribe': '🔔 Rappelle-moi',
-        'newsletter-success': 'Merci ! Nous vous rappellerons à temps. 💌'
+        'newsletter-success': 'Merci ! Nous vous rappellerons à temps. 💌',
+
+        // Ko-fi
+        'footer-coffee': 'Vous aimez l\'application ? Offrez-moi un café ☕'
     },
     it: {
         'header-title': 'Il Tuo Augurio di Capodanno Personale 2026',
@@ -265,7 +280,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Ricevi promemoria tempestivi per Pasqua, Natale e altro.',
         'newsletter-placeholder': 'tua@email.com',
         'btn-subscribe': '🔔 Ricordami',
-        'newsletter-success': 'Grazie! Ti ricorderemo in tempo. 💌'
+        'newsletter-success': 'Grazie! Ti ricorderemo in tempo. 💌',
+
+        // Ko-fi
+        'footer-coffee': 'Ti piace l\'app? Offrimi un caffè ☕'
     },
     bg: {
         'header-title': 'Вашето Лично Новогодишно Пожелание 2026',
@@ -307,7 +325,10 @@ window.uiTranslations = {
         'newsletter-subtitle': 'Получавайте навременни напомняния за Великден, Коледа и др.',
         'newsletter-placeholder': 'vasya@email.com',
         'btn-subscribe': '🔔 Напомни ми',
-        'newsletter-success': 'Благодаря! Ще ви напомним навреме. 💌'
+        'newsletter-success': 'Благодаря! Ще ви напомним навреме. 💌',
+
+        // Ko-fi
+        'footer-coffee': 'Харесва ли ви приложението? Черпете ме едно кафе ☕'
     }
 };
 
