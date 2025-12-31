@@ -73,8 +73,13 @@ window.uiTranslations = {
         'style-playful': 'Verspielt',
         'btn-viral': 'App teilen 🚀',
 
-        // Ko-fi
-        'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕'
+        // Bulk Generation
+        'bulk-title': 'Massen-Generierung (CSV) 📊',
+        'bulk-info': 'Lade eine CSV-Datei hoch, um viele Grüße auf einmal zu erstellen. Format: Name, Beziehung, Info, Ton',
+        'btn-bulk-upload': 'CSV Datei wählen',
+        'btn-bulk-start': 'Alle generieren',
+        'bulk-progress': 'Generiere Gruß {{current}} von {{total}}...',
+        'bulk-success': 'Alle {{total}} Grüße wurden erfolgreich generiert und in der Historie gespeichert! ✅'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -122,8 +127,13 @@ window.uiTranslations = {
         // Ko-fi
         'footer-coffee': 'Enjoying the app? Buy me a coffee ☕',
 
-        // Ko-fi
-        'footer-coffee': 'Enjoying the app? Buy me a coffee ☕'
+        // Bulk Generation
+        'bulk-title': 'Bulk Generation (CSV) 📊',
+        'bulk-info': 'Upload a CSV file to create many greetings at once. Format: Name, Relationship, Info, Tone',
+        'btn-bulk-upload': 'Choose CSV File',
+        'btn-bulk-start': 'Generate All',
+        'bulk-progress': 'Generating greeting {{current}} of {{total}}...',
+        'bulk-success': 'All {{total}} greetings were successfully generated and saved to history! ✅'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',
@@ -162,7 +172,7 @@ window.uiTranslations = {
 
         // Newsletter
         'newsletter-title': 'Bir daha asla özel günleri kaçırma! 🗓️',
-        'newsletter-subtitle': 'Paskalya, Noel ve diğer günler için zamanında hatırlatıcı al.',
+        'newsletter-subtitle': 'Paskalya, Noel ve diğer günler für zamanında hatırlatıcı al.',
         'newsletter-placeholder': 'senin@email.com',
         'btn-subscribe': '🔔 Hatırlat',
         'newsletter-success': 'Teşekkürler! Sana zamanında hatırlatacağız. 💌',

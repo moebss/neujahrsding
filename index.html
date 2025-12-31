@@ -164,6 +164,33 @@
                         <span class="btn-shine"></span>
                     </button>
                 </form>
+
+                <hr class="card-divider">
+
+                <div class="bulk-generation-trigger">
+                    <h3 data-i18n="bulk-title">Massen-Generierung (CSV) 📊</h3>
+                    <p class="bulk-info" data-i18n="bulk-info">Lade eine CSV-Datei hoch, um viele Grüße auf einmal zu
+                        erstellen. Format: Name, Beziehung, Info, Ton</p>
+
+                    <div class="bulk-controls">
+                        <input type="file" id="bulkCsvInput" accept=".csv" class="hidden">
+                        <label for="bulkCsvInput" class="btn-bulk-secondary">
+                            <span class="icon">📁</span>
+                            <span data-i18n="btn-bulk-upload">CSV Datei wählen</span>
+                        </label>
+                        <button id="startBulkBtn" class="btn-bulk-primary hidden" disabled>
+                            <span class="icon">🚀</span>
+                            <span data-i18n="btn-bulk-start">Alle generieren</span>
+                        </button>
+                    </div>
+
+                    <div id="bulkStatus" class="bulk-status hidden">
+                        <div class="bulk-progress-bar">
+                            <div id="bulkProgressFill" class="bulk-progress-fill"></div>
+                        </div>
+                        <p id="bulkProgressText" class="bulk-progress-text"></p>
+                    </div>
+                </div>
             </section>
 
             <!-- Output Section -->
