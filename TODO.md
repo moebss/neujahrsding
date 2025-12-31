@@ -11,6 +11,7 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 - [ ] **Saisonale Updates:** Den Prompt in `api/generate.js` so vorbereiten, dass er ab März automatisch auf "Ostergrüße" umgestellt werden kann (oder per Parameter steuerbar machen).
 
 ## ✅ Erledigt
+- [x] **UI Visibility Fix:** "Teilen"- und "Export"-Optionen sind jetzt erst nach der Generierung sichtbar (CSS `.hidden` Fix).
 - [x] **Viral-Loop:** "App teilen" Button für virales Marketing integriert.
 - [x] **Themes:** 4 verschiedene Farbschemata (Default, Silver, Red, Deep Sea) inkl. Theme-Switcher.
 - [x] **Sound-Effekte:** Magische Sounds beim Generieren und Speichern (Web Audio API).
