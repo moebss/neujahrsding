@@ -175,6 +175,32 @@
 
         <!-- History Sidebar -->
         <aside class="sidebar" id="historySidebar">
+            <!-- Newsletter in Sidebar -->
+            <div class="sidebar-newsletter">
+                <h3 data-i18n="newsletter-title">Erinnerung aktivieren! �</h3>
+                <p data-i18n="newsletter-subtitle">Erhalte Infos zu Ostern & Co.</p>
+
+                <form id="newsletterForm" class="sidebar-newsletter-form">
+                    <input type="email" id="newsletterEmail" data-i18n-placeholder="newsletter-placeholder"
+                        placeholder="deine@email.com" required>
+                    <button type="submit" class="btn-newsletter-sidebar">
+                        <span data-i18n="btn-subscribe">🔔 Los geht's</span>
+                    </button>
+
+                    <div class="newsletter-privacy-box">
+                        <input type="checkbox" id="newsletterPrivacy" required>
+                        <label for="newsletterPrivacy" data-i18n="newsletter-privacy">
+                            Ich stimme zu...
+                        </label>
+                    </div>
+                </form>
+                <p id="newsletterSuccess" class="success-message hidden" data-i18n="newsletter-success">
+                    Eingetragen! 💌
+                </p>
+            </div>
+
+            <hr class="sidebar-divider">
+
             <h3 data-i18n="history-title">Deine letzten Grüße 📜</h3>
             <div id="historyList" class="history-list">
                 <!-- History items will be injected here -->
@@ -184,33 +210,6 @@
         </aside>
 
     </main>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="newsletter-content">
-            <h3 data-i18n="newsletter-title">Nie wieder einen Anlass verpassen! 🗓️</h3>
-            <p data-i18n="newsletter-subtitle">Erhalte rechtzeitig Erinnerungen für Ostern, Weihnachten & Co.</p>
-
-            <form id="newsletterForm" class="newsletter-form-container">
-                <div class="newsletter-input-group">
-                    <input type="email" id="newsletterEmail" data-i18n-placeholder="newsletter-placeholder"
-                        placeholder="deine@email.com" required>
-                    <button type="submit" class="btn-newsletter">
-                        <span data-i18n="btn-subscribe">🔔 Erinnern lassen</span>
-                    </button>
-                </div>
-                <div class="newsletter-privacy-box">
-                    <input type="checkbox" id="newsletterPrivacy" required>
-                    <label for="newsletterPrivacy" data-i18n="newsletter-privacy">
-                        Ich stimme zu, dass meine E-Mail-Adresse gespeichert wird...
-                    </label>
-                </div>
-            </form>
-            <p id="newsletterSuccess" class="success-message hidden" data-i18n="newsletter-success">
-                Danke! Wir haben dich eingetragen. 💌
-            </p>
-        </div>
-    </section>
 
     <footer>
         <p style="margin-bottom: 15px;">
