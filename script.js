@@ -789,10 +789,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Scroll to output
             outputSection.scrollIntoView({ behavior: 'smooth' });
 
-            // Show Newsletter Modal after a short delay
+            // Show Newsletter Modal after a short delay (Greet & Popup)
             setTimeout(() => {
-                showNewsletterModal();
-            }, 3000);
+                if (typeof showNewsletterModal === 'function') showNewsletterModal();
+            }, 2500);
         } catch (err) {
             alert('Ups! Etwas ist schief gelaufen. Bitte versuch es nochmal.');
         } finally {
@@ -909,8 +909,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error('Export failed:', err);
         } finally {
-            document.body.removeChild(exportContainer);
+            if (document.body.contains(exportContainer)) {
+                document.body.removeChild(exportContainer);
+            }
             if (btnText) btnText.textContent = originalText;
+
+            // Also show newsletter modal after image download
+            setTimeout(() => {
+                if (typeof showNewsletterModal === 'function') showNewsletterModal();
+            }, 1000);
         }
     });
 
@@ -1040,16 +1047,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.showNewsletterModal = () => {
-        // Don't show if already subscribed or recently shown
-        if (localStorage.getItem('newsletter_subscribed') === 'true') return;
+    function showNewsletterModal() {
+        // NOTE: Temporarily disabled the "already subscribed" check so you can see it while testing
+        // if (localStorage.getItem('newsletter_subscribed') === 'true') return;
+
+        // Use a session-based check instead for now
+        if (sessionStorage.getItem('newsletter_popup_shown') === 'true') return;
 
         const modal = document.getElementById('newsletterModal');
         if (modal) {
             modal.classList.remove('hidden');
-            playMagicSound(); // Add a nice sound effect
+            if (typeof playMagicSound === 'function') playMagicSound();
+            sessionStorage.setItem('newsletter_popup_shown', 'true');
         }
     }
+
+    // Make it available globally if needed
+    window.showNewsletterModal = showNewsletterModal;
 
     // ===========================
     // UI POLISH FUNCTIONS
