@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="newsletter_styles.css">
     <link rel="stylesheet" href="premium_additions.css">
+    <link rel="stylesheet" href="banner.css">
 
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Dein persönlicher Neujahrsgruß 2026">
@@ -172,6 +173,31 @@
 
     <!-- UI Elements -->
     <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Grussgenerator Banner -->
+    <div class="grussgenerator-banner">
+        <div class="banner-container">
+            <div class="banner-content">
+                <div class="banner-icon">💌</div>
+                <div class="banner-text">
+                    <h3>Neu: <strong>grussgenerator.de</strong></h3>
+                    <p>Bald verfügbar: Grüße für <strong>jeden Anlass</strong> – Geburtstag, Hochzeit & mehr!</p>
+                </div>
+            </div>
+            <div class="banner-form">
+                <form id="bannerSubscribeForm" class="banner-subscribe-form">
+                    <input type="email" id="bannerEmail" placeholder="deine@email.com" required>
+                    <button type="submit" class="btn-banner-subscribe">
+                        <span>🔔 Early Access</span>
+                    </button>
+                </form>
+                <div class="banner-success" id="bannerSuccess">
+                    ✅ Du bist dabei! Wir melden uns bald.
+                </div>
+            </div>
+            <button class="banner-close" id="closeBanner" title="Schließen">×</button>
+        </div>
+    </div>
 
     <main class="container with-sidebar">
         <div class="main-content">
@@ -394,6 +420,7 @@
     <script src="messages_i18n.js"></script>
     <script src="script.js"></script>
     <script src="premium_features.js"></script>
+    <script src="banner.js"></script>
 </body>
 
 </html>
