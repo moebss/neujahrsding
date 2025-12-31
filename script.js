@@ -608,7 +608,9 @@ function renderHistory(history) {
             messageContainer.innerText = item.text;
             document.getElementById('recipientName').value = item.name;
 
+            document.getElementById('outputSection').style.display = 'block';
             document.getElementById('outputSection').classList.remove('hidden');
+            document.getElementById('inputSection').style.display = 'none';
             document.getElementById('inputSection').classList.add('hidden');
 
             // Scroll to result on mobile
@@ -780,6 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Show output section with animation
             inputSection.style.display = 'none';
+            outputSection.style.display = 'block';
             outputSection.classList.remove('hidden');
 
             // Scroll to output

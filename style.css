@@ -1,6 +1,11 @@
 /* ===========================
    CSS VARIABLES & DESIGN TOKENS
    =========================== */
+/* GLOBAL UTILITIES */
+.hidden {
+    display: none !important;
+}
+
 :root {
     /* Colors - Festive Palette */
     --color-bg-dark: #0a0a1a;
@@ -540,9 +545,20 @@ select option {
 /* ===========================
    OUTPUT SECTION
    =========================== */
-.output-card {
-    animation: slideInUp 0.5s ease;
+.output-section {
+    animation: slideInUp 0.5s ease forwards;
 }
+
+.message-display-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+}
+
 
 @keyframes slideInUp {
     from {
@@ -836,6 +852,7 @@ select option {
     color: var(--color-text);
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: 1.4;
