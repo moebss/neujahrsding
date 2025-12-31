@@ -601,12 +601,13 @@ select option {
     }
 
     .sidebar {
-        display: none;
-        /* Hide sidebar on mobile for now or stack it */
-    }
-
-    .sidebar.mobile-visible {
         display: block;
+        /* Stack below content on mobile */
+        margin-top: var(--space-lg);
+        position: static;
+        /* No sticky on mobile */
+        max-height: none;
+        /* Show full on mobile */
     }
 }
 
