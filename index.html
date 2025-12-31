@@ -21,6 +21,7 @@
     </script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="newsletter_styles.css">
+    <link rel="stylesheet" href="premium_additions.css">
 
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Dein persönlicher Neujahrsgruß 2026">
@@ -85,12 +86,52 @@
     <!-- Sparkle effects -->
     <div class="sparkles" id="sparkles"></div>
 
-    <!-- Theme Switcher -->
-    <div class="theme-switcher">
-        <div class="theme-dot theme-default active" data-theme="default" title="Gold / Navy"></div>
-        <div class="theme-dot theme-silver" data-theme="silver" title="Silver Night"></div>
-        <div class="theme-dot theme-red" data-theme="red" title="Classic Red"></div>
-        <div class="theme-dot theme-deepsea" data-theme="deepsea" title="Deep Sea"></div>
+    <!-- Settings & Dark Mode -->
+    <div class="floating-controls">
+        <button class="dark-mode-toggle" id="darkModeToggle" title="Dark Mode">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon hidden">🌙</span>
+        </button>
+        <button class="settings-toggle" id="settingsToggle" title="Einstellungen">
+            ⚙️
+        </button>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="settings-panel hidden" id="settingsPanel">
+        <div class="settings-header">
+            <h3>Einstellungen</h3>
+            <button class="close-settings" id="closeSettings">×</button>
+        </div>
+        <div class="settings-body">
+            <div class="setting-group">
+                <label>Design-Theme</label>
+                <div class="theme-switcher-inline">
+                    <div class="theme-dot theme-default active" data-theme="default" title="Gold / Navy"></div>
+                    <div class="theme-dot theme-silver" data-theme="silver" title="Silver Night"></div>
+                    <div class="theme-dot theme-red" data-theme="red" title="Classic Red"></div>
+                    <div class="theme-dot theme-deepsea" data-theme="deepsea" title="Deep Sea"></div>
+                </div>
+            </div>
+            <div class="setting-group">
+                <label>Animationen</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="animationsToggle" checked>
+                    <label for="animationsToggle"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding Overlay -->
+    <div class="onboarding-overlay hidden" id="onboardingOverlay">
+        <div class="onboarding-step" data-step="1">
+            <div class="onboarding-content">
+                <h2>Willkommen! 🎉</h2>
+                <p>Erstelle in 3 einfachen Schritten deinen perfekten Neujahrsgruß!</p>
+                <button class="btn-onboarding-next">Weiter</button>
+            </div>
+        </div>
     </div>
 
     <header>
@@ -352,6 +393,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="messages_i18n.js"></script>
     <script src="script.js"></script>
+    <script src="premium_features.js"></script>
 </body>
 
 </html>
