@@ -19,16 +19,15 @@ export default async (req, res) => {
         return res.status(400).json({ error: 'Ungültige E-Mail-Adresse' });
     }
 
-    // Supabase Konfiguration aus Environment Variablen
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_ANON_KEY;
+    // Supabase Konfiguration aus Environment Variablen (mit Bereinigung)
+    const supabaseUrl = process.env.SUPABASE_URL?.trim().replace(/\/$/, '');
+    const supabaseKey = process.env.SUPABASE_ANON_KEY?.trim();
 
     if (!supabaseUrl || !supabaseKey) {
-        return res.status(500).json({ error: 'Supabase Konfiguration fehlt auf dem Server' });
+        return res.status(500).json({ error: 'Konfigurationsfehler: SUPABASE_URL oder SUPABASE_ANON_KEY fehlt bei Vercel.' });
     }
 
     try {
-        // IP für DSGVO Nachweis (gehasht oder direkt, je nach Auslegung)
         const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
         const response = await fetch(`${supabaseUrl}/rest/v1/newsletter`, {
@@ -43,17 +42,22 @@ export default async (req, res) => {
                 email: email,
                 created_at: new Date().toISOString(),
                 signup_ip: ip,
-                confirmed: false // Standardmäßig nicht bestätigt für DSGVO Double-Opt-In
+                confirmed: false
             })
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            // Wenn E-Mail schon existiert, trotzdem Erfolg melden (Sicherheit/Privacy)
-            if (error.code === '23505') {
-                return res.status(200).json({ success: true, message: 'Bereits eingetragen' });
+            const errorData = await response.json();
+            console.error('Supabase raw error:', errorData);
+
+            // Wenn E-Mail schon existiert
+            if (errorData.code === '23505') {
+                return res.status(200).json({ success: true, message: 'Already subscribed' });
             }
-            throw new Error(error.message || 'Supabase Request failed');
+
+            return res.status(response.status).json({
+                error: `Supabase meldet: ${errorData.message || 'Unbekannter Fehler'}`
+            });
         }
 
         return res.status(200).json({ success: true });

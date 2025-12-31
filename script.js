@@ -886,13 +886,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ email })
                 });
 
-                if (!response.ok) throw new Error('Subscription failed');
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Subscription failed');
+                }
 
                 newsletterForm.style.display = 'none';
                 newsletterSuccess.classList.remove('hidden');
                 localStorage.setItem('newsletter_subscribed', 'true');
             } catch (err) {
-                alert('Ups! Das hat nicht geklappt. Bitte versuche es später noch einmal.');
+                alert('Fehler: ' + err.message);
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
