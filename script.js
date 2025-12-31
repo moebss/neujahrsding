@@ -644,6 +644,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start interactive animations
     new CursorFirework();
     startSparkles();
+    initCountdown();
+    initSparkleCursor();
+    initParallax();
 
     // Initialize language from localStorage or default to 'de'
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
@@ -671,7 +674,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Visual loading state
         const originalBtnText = document.querySelector('.btn-text').textContent;
         const submitBtn = document.getElementById('generateBtn');
+        const formCard = document.querySelector('.card');
+
         submitBtn.disabled = true;
+        formCard.classList.add('thinking-glow');
         document.querySelector('.btn-text').textContent = currentLanguage === 'de' ? '🪄 Generiere Wunder...' : '🪄 Generating Magic...';
 
         try {
@@ -692,6 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } finally {
             // Restore button
             submitBtn.disabled = false;
+            formCard.classList.remove('thinking-glow');
             document.querySelector('.btn-text').textContent = originalBtnText;
         }
     });
@@ -700,11 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
     copyBtn.addEventListener('click', async () => {
         try {
             await navigator.clipboard.writeText(currentMessage);
-            const originalText = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<span class="icon">✓</span> Kopiert!';
-            setTimeout(() => {
-                copyBtn.innerHTML = originalText;
-            }, 2000);
+            showToast(currentLanguage === 'de' ? 'Kopiert! ✅' : 'Copied! ✅');
         } catch (err) {
             alert('Fehler beim Kopieren. Bitte manuell kopieren.');
         }
@@ -888,18 +891,102 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const data = await response.json();
 
-                if (!response.ok) {
-                    throw new Error(data.error || 'Subscription failed');
-                }
+                if (!response.ok) throw new Error(data.error || 'Subscription failed');
 
                 newsletterForm.style.display = 'none';
                 newsletterSuccess.classList.remove('hidden');
                 localStorage.setItem('newsletter_subscribed', 'true');
+                showToast(currentLanguage === 'de' ? 'Erfolgreich eingetragen! 💌' : 'Successfully subscribed! 💌');
             } catch (err) {
-                alert('Fehler: ' + err.message);
+                alert('Ups! Das hat nicht geklappt. Bitte versuche es später noch einmal.');
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
         });
+    }
+
+    // ===========================
+    // UI POLISH FUNCTIONS
+    // ===========================
+
+    function initCountdown() {
+        const countdownEl = document.getElementById('newYearCountdown');
+        if (!countdownEl) return;
+
+        function update() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const nextYear = 2026;
+            const target = new Date(`January 1, ${nextYear} 00:00:00`);
+            const diff = target - now;
+
+            if (diff <= 0) {
+                countdownEl.innerHTML = currentLanguage === 'de' ? "🎉 FROHES NEUES JAHR 2026! 🥂" : "🎉 HAPPY NEW YEAR 2026! 🥂";
+                return;
+            }
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML = (currentLanguage === 'de' ? "Noch " : "Only ") +
+                `${hours}h ${mins}m ${secs}s ` +
+                (currentLanguage === 'de' ? "bis 2026! 🎆" : "until 2026! 🎆");
+
+            countdownEl.classList.remove('hidden');
+        }
+
+        update();
+        setInterval(update, 1000);
+    }
+
+    function initSparkleCursor() {
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) { // Create sparkle occasionally
+                const sparkle = document.createElement('div');
+                sparkle.className = 'cursor-sparkle';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+
+                // Random size and rotation
+                const size = Math.random() * 10 + 5;
+                sparkle.style.width = size + 'px';
+                sparkle.style.height = size + 'px';
+                sparkle.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.style.opacity = '0';
+                    sparkle.style.transform += ' translate(0, 20px) scale(0)';
+                    setTimeout(() => sparkle.remove(), 500);
+                }, 100);
+            }
+        });
+    }
+
+    function initParallax() {
+        const bg = document.querySelector('.fireworks-bg');
+        if (!bg) return;
+
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            bg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    }
+
+    window.showToast = function (message) {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<span>✨</span> ${message}`;
+
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.classList.add('fade-out');
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
     }
 });
