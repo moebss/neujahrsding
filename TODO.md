@@ -10,16 +10,15 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 - [ ] **Performance Check:** Prüfen, ob die vielen Animationen (Sparkles, Parallax) auf älteren Smartphones flüssig laufen. Eventuell Option zum Deaktivieren hinzufügen.
 - [ ] **Saisonale Updates:** Den Prompt in `api/generate.js` so vorbereiten, dass er ab März automatisch auf "Ostergrüße" umgestellt werden kann (oder per Parameter steuerbar machen).
 
-## 🟢 Niedrige Priorität (Visionen & Ideen)
-- [ ] **Audio-Wiedergabe (Text-to-Speech):** Den generierten Gruß per Klick vorlesen lassen (Gänsehaut-Moment!).
-- [ ] **Export-Styles:** Verschiedene Schriftarten und Hintergründe für den Bild-Export (z.B. "Elegant", "Playful", "Classic").
-- [ ] **Animierte Partikel:** Echte Schnee- oder Feuerwerk-Effekte im Hintergrund, die auf Mausbewegungen reagieren.
-- [ ] **Emoji-Shortcuts:** Eine Schnellwahl-Leiste für passende Emojis im Eingabefeld.
-- [ ] **Viral-Loop:** Ein "Freunde einladen" Button nach der Generierung, um die App bekannter zu machen.
-- [ ] **Themes:** Verschiedene Farbschemata anbieten (z.B. "Silver Night", "Classic Red", "Deep Sea").
-- [ ] **Sound-Effekte:** Dezente Sound-Effekte beim Generieren (Zauberstab-Sound) oder beim Herunterladen.
-
 ## ✅ Erledigt
+- [x] **Viral-Loop:** "App teilen" Button für virales Marketing integriert.
+- [x] **Themes:** 4 verschiedene Farbschemata (Default, Silver, Red, Deep Sea) inkl. Theme-Switcher.
+- [x] **Sound-Effekte:** Magische Sounds beim Generieren und Speichern (Web Audio API).
+- [x] **Export-Styles:** Auswahl zwischen Klassisch, Elegant und Verspielt beim Bild-Export.
+- [x] **Animierte Partikel:** Canvas-basiertes Partikel-System im Hintergrund.
+- [x] **Audio-Wiedergabe (Text-to-Speech):** Vorlese-Funktion integriert.
+- [x] **Speech-to-Text:** Diktier-Funktion für Zusatzinfos.
+- [x] **Emoji-Shortcuts:** Schnellwahl-Leiste für Emojis.
 - [x] **Impressum & Datenschutz vervollständigen:** Alexander Rheindorf eingetragen. Vercel, Perplexity AI und Supabase als Datenverarbeiter ergänzt.
 - [x] **Social Media Preview:** Hochwertiges Vorschaubild (`og-image.png`) erstellt und eingebunden.
 - [x] Internationalisierung (i18n) Grundgerüst.
@@ -33,3 +32,4 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 - [x] PWA (Progressive Web App) Modus & Manifest.
 - [x] QR-Code auf Export-Bildern.
 - [x] Smart AI Status-Meldungen.
+

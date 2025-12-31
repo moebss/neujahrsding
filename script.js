@@ -647,6 +647,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initCountdown();
     initSparkleCursor();
     initParallax();
+    initThemes();
+    initParticles();
+    initSoundEffects();
+    initViralLoop();
+    initExportStyles();
 
     // Initialize language from localStorage or default to 'de'
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
@@ -748,6 +753,9 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
         formCard.classList.add('thinking-glow');
 
+        // Play Magic Sound
+        playMagicSound();
+
         const btnTextEl = document.querySelector('.btn-text');
         const thinkingMessages = [
             translations[currentLanguage]['thinking-1'] || '🪄 ...',
@@ -813,80 +821,68 @@ document.addEventListener('DOMContentLoaded', () => {
     // Download as Image (Robust "Ghost Container" Method)
     document.getElementById('downloadBtn').addEventListener('click', async () => {
         let messageText = document.getElementById('generatedMessage').innerText;
+        const currentStyle = document.querySelector('.export-style-btn.active')?.dataset.style || 'classic';
+
+        // Play Download Sound
+        playSuccessSound();
 
         // AGGRESSIVE CLEANER: Kill typical placeholders before image generation
-        // Removes: "Dein Name", "[Dein Name]", "Ihr Name", "Name", "Absender" at the end of the text
         const badEndings = [
-            /Dein Name\s*$/i,
-            /\[Dein Name\]\s*$/i,
-            /Ihr Name\s*$/i,
-            /\[Ihr Name\]\s*$/i,
-            /Your Name\s*$/i,
-            /\[Your Name\]\s*$/i,
-            /Name\s*$/i,
-            /\[Name\]\s*$/i,
-            /Dein Absender\s*$/i
+            /Dein Name\s*$/i, /\[Dein Name\]\s*$/i, /Ihr Name\s*$/i, /\[Ihr Name\]\s*$/i,
+            /Your Name\s*$/i, /\[Your Name\]\s*$/i, /Name\s*$/i, /\[Name\]\s*$/i, /Dein Absender\s*$/i
         ];
-
-        // Apply regex to cut off the end
-        badEndings.forEach(regex => {
-            messageText = messageText.replace(regex, '');
-        });
-
-        // Also clean generic trailing newlines/dashes
+        badEndings.forEach(regex => { messageText = messageText.replace(regex, ''); });
         messageText = messageText.replace(/[\n\r\s]+[-–]*[\n\r\s]*$/, '').trim();
 
         const btnText = document.querySelector('#downloadBtn span[data-i18n]');
         const originalText = btnText ? btnText.textContent : 'Als Bild speichern';
+        if (btnText) btnText.textContent = '🎨 ...';
 
-        // Show loading state
-        if (btnText) btnText.textContent = '🎨 Generiere Bild...';
-
-        // 1. Create a dedicated export container (off-screen)
-        // This ensures consistent width/look regardless of mobile/desktop view
         const exportContainer = document.createElement('div');
         exportContainer.style.position = 'fixed';
         exportContainer.style.left = '-9999px';
-        exportContainer.style.top = '0';
-        exportContainer.style.width = '800px'; // Fixed width for high quality
+        exportContainer.style.width = '800px';
         exportContainer.style.padding = '80px 60px';
         exportContainer.style.borderRadius = '40px';
         exportContainer.style.display = 'flex';
         exportContainer.style.flexDirection = 'column';
         exportContainer.style.alignItems = 'center';
         exportContainer.style.justifyContent = 'center';
-
-        // VIBRANT GRADIENT BACKGROUND
-        // Radial gradients render much more reliably in html2canvas than linear ones
-        exportContainer.style.background = 'radial-gradient(circle at center, #4a0a69 0%, #240046 50%, #120024 100%)';
-        exportContainer.style.backgroundColor = '#120024';
-
         exportContainer.style.color = '#ffffff';
         exportContainer.style.fontFamily = "'Outfit', sans-serif";
         exportContainer.style.textAlign = 'center';
         exportContainer.style.boxShadow = '0 30px 80px rgba(0,0,0,0.6)';
-        exportContainer.style.border = '6px solid #ffd700';
 
-        // 2. Build the content
+        // STYLE LOGIC
+        if (currentStyle === 'elegant') {
+            exportContainer.style.background = 'radial-gradient(circle at center, #1c252e 0%, #000000 100%)';
+            exportContainer.style.border = '4px solid #ffffff';
+        } else if (currentStyle === 'playful') {
+            exportContainer.style.background = 'radial-gradient(circle at center, #ff006e 0%, #2a0000 100%)';
+            exportContainer.style.border = '6px dashed #ffd700';
+        } else {
+            // Classic
+            exportContainer.style.background = 'radial-gradient(circle at center, #4a0a69 0%, #240046 50%, #120024 100%)';
+            exportContainer.style.border = '6px solid #ffd700';
+        }
+
         exportContainer.innerHTML = `
-            <div style="font-size: 48px; margin-bottom: 50px; color: #ffd700; text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); font-weight: bold;">
+            <div style="font-size: 48px; margin-bottom: 50px; color: ${currentStyle === 'elegant' ? '#fff' : '#ffd700'}; text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); font-weight: bold;">
                 🎆 ✨ Neujahrsgruß 2026 ✨ 🎆
             </div>
-            
-            <div style="font-size: 32px; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.4); margin-bottom: 60px; white-space: pre-wrap; width: 100%;">
+            <div style="font-size: ${messageText.length > 400 ? '24px' : '32px'}; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.4); margin-bottom: 60px; white-space: pre-wrap; width: 100%;">
                 ${messageText}
             </div>
-            
             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 30px; margin-top: auto;">
                 <div style="text-align: left;">
                     <span style="font-size: 18px; color: rgba(255, 255, 255, 0.9); text-transform: uppercase; letter-spacing: 4px; font-weight: 600; display: block;">
-                        ✨ Erstellt auf neujahrsgruss2026.de ✨
+                        ✨ neujahrsgruss2026.de ✨
                     </span>
                     <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 5px;">
-                        Ein Projekt von Alexander Rheindorf
+                        Alexander Rheindorf
                     </span>
                 </div>
-                <div style="background: white; padding: 10px; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.2);">
+                <div style="background: white; padding: 10px; border-radius: 12px;">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://neujahrsgruss2026.de&bgcolor=ffffff&color=000000" 
                          style="width: 80px; height: 80px; display: block;" crossorigin="anonymous">
                 </div>
@@ -896,25 +892,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(exportContainer);
 
         try {
-            // 3. Render the ghost container
-            const canvas = await html2canvas(exportContainer, {
-                scale: 2, // 1600px width final image (Retina quality)
-                backgroundColor: null,
-                logging: false,
-                useCORS: true,
-                allowTaint: true
-            });
-
-            // 4. Trigger download
+            const canvas = await html2canvas(exportContainer, { scale: 2, backgroundColor: null, useCORS: true });
             const link = document.createElement('a');
-            link.download = 'neujahrsgruss-2026.png';
+            link.download = `neujahrsgruss-2026-${currentStyle}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
         } catch (err) {
-            console.error('Image export failed:', err);
-            alert('Fehler beim Speichern des Bildes.');
+            console.error('Export failed:', err);
         } finally {
-            // 5. Cleanup
             document.body.removeChild(exportContainer);
             if (btnText) btnText.textContent = originalText;
         }
@@ -1057,6 +1042,146 @@ document.addEventListener('DOMContentLoaded', () => {
             bg.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
     }
+
+    function initThemes() {
+        const dots = document.querySelectorAll('.theme-dot');
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const theme = dot.dataset.theme;
+                document.documentElement.setAttribute('data-theme', theme);
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                localStorage.setItem('user-theme', theme);
+                showToast(currentLanguage === 'de' ? `Theme gewechselt: ${theme}` : `Theme changed: ${theme}`);
+            });
+        });
+
+        // Restore
+        const saved = localStorage.getItem('user-theme');
+        if (saved) {
+            const dot = document.querySelector(`.theme-dot[data-theme="${saved}"]`);
+            if (dot) dot.click();
+        }
+    }
+
+    function initExportStyles() {
+        const btns = document.querySelectorAll('.export-style-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    }
+
+    function initViralLoop() {
+        const viralBtn = document.getElementById('viralBtn');
+        viralBtn.addEventListener('click', async () => {
+            const shareData = {
+                title: 'Neujahrsgrüße 2026',
+                text: 'Schau mal, hier kannst du KI-generierte Neujahrsgrüße erstellen!',
+                url: 'https://neujahrsgruss2026.de'
+            };
+
+            if (navigator.share) {
+                try { await navigator.share(shareData); } catch (e) { }
+            } else {
+                await navigator.clipboard.writeText(shareData.url);
+                showToast(currentLanguage === 'de' ? 'Link kopiert! 🚀' : 'Link copied! 🚀');
+            }
+        });
+    }
+
+    // --- Particle System ---
+    function initParticles() {
+        const canvas = document.getElementById('particleCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
+                this.alpha = Math.random();
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    // --- Sound System ---
+    let audioCtx;
+    function initSoundEffects() {
+        document.addEventListener('click', () => {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }, { once: true });
+    }
+
+    window.playMagicSound = () => {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1760, audioCtx.currentTime + 0.5);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+    };
+
+    window.playSuccessSound = () => {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+    };
 
     window.showToast = function (message) {
         const container = document.getElementById('toastContainer');

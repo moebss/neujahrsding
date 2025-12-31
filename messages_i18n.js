@@ -67,6 +67,12 @@ window.uiTranslations = {
         'thinking-3': '🌟 Mische eine Prise Glück unter...',
         'thinking-4': '🎆 Bereite das Feuerwerk vor...',
 
+        // Export Styles & Viral
+        'style-classic': 'Klassisch',
+        'style-elegant': 'Elegant',
+        'style-playful': 'Verspielt',
+        'btn-viral': 'App teilen 🚀',
+
         // Ko-fi
         'footer-coffee': 'Gefällt dir die App? Spendier mir einen Kaffee ☕'
     },

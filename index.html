@@ -39,6 +39,7 @@
 
 <body>
     <!-- Animated fireworks background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
     <div class="fireworks-container" id="fireworksContainer"></div>
 
     <!-- Sparkle effects -->
@@ -77,6 +78,12 @@
         </h1>
         <p class="subtitle" data-i18n="header-subtitle">Erstelle einzigartige, herzliche Neujahrswünsche in Sekunden
         </p>
+        <div class="theme-switcher">
+            <div class="theme-dot theme-default active" data-theme="default" title="Gold / Navy"></div>
+            <div class="theme-dot theme-silver" data-theme="silver" title="Silver Night"></div>
+            <div class="theme-dot theme-red" data-theme="red" title="Classic Red"></div>
+            <div class="theme-dot theme-deepsea" data-theme="deepsea" title="Deep Sea"></div>
+        </div>
         <div id="newYearCountdown" class="header-countdown hidden"></div>
     </header>
 
@@ -169,6 +176,13 @@
                     <div id="generatedMessage" class="message-text"></div>
                 </div>
 
+                <div class="export-styles">
+                    <button class="export-style-btn active" data-style="classic"
+                        data-i18n="style-classic">Classic</button>
+                    <button class="export-style-btn" data-style="elegant" data-i18n="style-elegant">Elegant</button>
+                    <button class="export-style-btn" data-style="playful" data-i18n="style-playful">Playful</button>
+                </div>
+
                 <div class="action-buttons">
                     <button class="btn-action btn-copy" id="copyBtn">
                         <span class="icon">📋</span>
@@ -188,6 +202,11 @@
                     <button class="btn-action btn-download" id="downloadBtn">
                         <span class="icon">📸</span>
                         <span data-i18n="btn-download">Als Bild speichern</span>
+                    </button>
+
+                    <button class="btn-action btn-viral" id="viralBtn">
+                        <span class="icon">🚀</span>
+                        <span data-i18n="btn-viral">App teilen</span>
                     </button>
                 </div>
 
