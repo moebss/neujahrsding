@@ -174,7 +174,13 @@ window.uiTranslations = {
         'newsletter-success': 'Teşekkürler! Sana zamanında hatırlatacağız. 💌',
 
         // Ko-fi
-        'footer-coffee': 'Uygulamayı beğendin mi? Bana bir kahve ısmarla ☕'
+        'footer-coffee': 'Uygulamayı beğendin mi? Bana bir kahve ısmarla ☕',
+
+        // Modal Newsletter
+        'modal-newsletter-title': 'Şimdi kayıt ol!',
+        'modal-newsletter-subtitle': '<strong>grussgenerator.de</strong> ne zaman yayına gireceğini ilk sen öğren. Gelecekte her durum için doğru metne sahip olacaksın!',
+        'modal-btn-subscribe': '🔔 Şimdi kayıt ol',
+        'modal-success': 'Harika! Kayıt oldun. 💌'
     },
     es: {
         'header-title': 'Tu Saludo de Año Nuevo Personal 2026',
@@ -219,7 +225,13 @@ window.uiTranslations = {
         'newsletter-success': '¡Gracias! Te avisaremos a tiempo. 💌',
 
         // Ko-fi
-        'footer-coffee': '¿Te gusta la app? Invítame a un café ☕'
+        'footer-coffee': '¿Te gusta la app? Invítame a un café ☕',
+
+        // Modal Newsletter
+        'modal-newsletter-title': '¡Regístrate ahora!',
+        'modal-newsletter-subtitle': 'Sé el primero en saber cuándo <strong>grussgenerator.de</strong> se lance. ¡En el futuro siempre tendrás el texto adecuado para cada ocasión!',
+        'modal-btn-subscribe': '🔔 Regístrate ahora',
+        'modal-success': '¡Excelente! Ya estás dentro. 💌'
     },
     fr: {
         'header-title': 'Votre Vœu de Nouvel An Personnel 2026',
@@ -264,7 +276,13 @@ window.uiTranslations = {
         'newsletter-success': 'Merci ! Nous vous rappellerons à temps. 💌',
 
         // Ko-fi
-        'footer-coffee': 'Vous aimez l\'application ? Offrez-moi un café ☕'
+        'footer-coffee': 'Vous aimez l\'application ? Offrez-moi un café ☕',
+
+        // Modal Newsletter
+        'modal-newsletter-title': 'Inscrivez-vous maintenant !',
+        'modal-newsletter-subtitle': 'Soyez le premier à savoir quand <strong>grussgenerator.de</strong> sortira. À l\'avenir, vous aurez toujours le bon texte pour chaque occasion !',
+        'modal-btn-subscribe': '🔔 S\'inscrire maintenant',
+        'modal-success': 'Excellent ! Vous êtes inscrit. 💌'
     },
     it: {
         'header-title': 'Il Tuo Augurio di Capodanno Personale 2026',
@@ -309,7 +327,13 @@ window.uiTranslations = {
         'newsletter-success': 'Grazie! Ti ricorderemo in tempo. 💌',
 
         // Ko-fi
-        'footer-coffee': 'Ti piace l\'app? Offrimi un caffè ☕'
+        'footer-coffee': 'Ti piace l\'app? Offrimi un caffè ☕',
+
+        // Modal Newsletter
+        'modal-newsletter-title': 'Iscriviti ora!',
+        'modal-newsletter-subtitle': 'Sii il primo a sapere quando <strong>grussgenerator.de</strong> andrà online. In futuro avrai sempre il testo giusto per ogni occasione!',
+        'modal-btn-subscribe': '🔔 Iscriviti ora',
+        'modal-success': 'Eccellente! Sei dei nostri. 💌'
     },
     bg: {
         'header-title': 'Вашето Лично Новогодишно Пожелание 2026',
@@ -354,7 +378,13 @@ window.uiTranslations = {
         'newsletter-success': 'Благодаря! Ще ви напомним навреме. 💌',
 
         // Ko-fi
-        'footer-coffee': 'Харесва ли ви приложението? Черпете ме едно кафе ☕'
+        'footer-coffee': 'Харесва ли ви приложението? Черпете ме едно кафе ☕',
+
+        // Modal Newsletter
+        'modal-newsletter-title': 'Регистрирайте се сега!',
+        'modal-newsletter-subtitle': 'Научете първи кога <strong>grussgenerator.de</strong> ще бъде онлайн. В бъдеще винаги ще имате правилния текст за всеки повод!',
+        'modal-btn-subscribe': '🔔 Регистрирайте се сега',
+        'modal-success': 'Отлично! Вече сте част от нас. 💌'
     }
 };
 

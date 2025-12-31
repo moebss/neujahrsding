@@ -23,7 +23,10 @@ function updateUILanguage() {
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[currentLanguage] && translations[currentLanguage][key]) {
-            el.textContent = translations[currentLanguage][key];
+            // Use innerHTML instead of textContent to support formatting like <strong>
+            // We also trim to avoid any accidental whitespace issues
+            const translationText = translations[currentLanguage][key].trim();
+            el.innerHTML = translationText;
         }
     });
 
@@ -1048,17 +1051,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showNewsletterModal() {
-        // NOTE: Temporarily disabled the "already subscribed" check so you can see it while testing
-        // if (localStorage.getItem('newsletter_subscribed') === 'true') return;
-
-        // Use a session-based check instead for now
-        if (sessionStorage.getItem('newsletter_popup_shown') === 'true') return;
+        // Show the modal every time after generation/download as long as the user hasn't subscribed yet
+        if (localStorage.getItem('newsletter_subscribed') === 'true') return;
 
         const modal = document.getElementById('newsletterModal');
         if (modal) {
             modal.classList.remove('hidden');
             if (typeof playMagicSound === 'function') playMagicSound();
-            sessionStorage.setItem('newsletter_popup_shown', 'true');
         }
     }
 

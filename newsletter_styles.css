@@ -209,6 +209,11 @@
     color: #e0e0e0;
 }
 
+.modal-content p strong {
+    color: var(--color-gold);
+    font-weight: 800;
+}
+
 .modal-content .sidebar-newsletter-form {
     margin-top: var(--space-md);
 }

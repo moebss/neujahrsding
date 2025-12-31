@@ -7,10 +7,12 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 
 ## 🟡 Mittlere Priorität (Optimierung)
 - [ ] **Sprach-Vorlagen erweitern:** In `messages_i18n.js` die `messageTemplates` für Englisch, Türkisch, Spanisch etc. auf das gleiche Detail-Level wie die deutschen Vorlagen bringen.
-- [ ] **Performance Check:** Prüfen, ob die vielen Animationen (Sparkles, Parallax) auf älteren Smartphones flüssig laufen. Eventuell Option zum Deaktivieren hinzufügen.
-- [ ] **Saisonale Updates:** Den Prompt in `api/generate.js` so vorbereiten, dass er ab März automatisch auf "Ostergrüße" umgestellt werden kann (oder per Parameter steuerbar machen).
+- [ ] **Titel-Tag SEO:** Titel-Tags für jede Seite inkl. Meta-Beschreibungen optimieren.
+- [ ] **Performance Check:** Prüfen, ob die vielen Animationen (Sparkles, Parallax) auf älteren Smartphones flüssig laufen.
 
 ## ✅ Erledigt
+- [x] **Newsletter Modal Fix:** <strong>-Tags werden nun korrekt gerendert und das Popup erscheint solange nach der Generierung, bis der User abonniert hat.
+- [x] **Newsletter Backend:** Beide Newsletter-Formulare nutzen jetzt dieselbe Supabase-Tabelle.
 - [x] **Theme Switcher Position:** Auswahl der Farbschemata in die obere rechte Ecke verschoben (schwebendes Design).
 - [x] **UI Visibility Fix:** "Teilen"- und "Export"-Optionen sind jetzt erst nach der Generierung sichtbar (CSS `.hidden` Fix).
 - [x] **Viral-Loop:** "App teilen" Button für virales Marketing integriert.
