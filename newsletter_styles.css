@@ -1,0 +1,100 @@
+/* ===========================
+   NEWSLETTER SECTION
+   =========================== */
+.newsletter-section {
+    max-width: 800px;
+    margin: 0 auto var(--space-xl) auto;
+    padding: 0 var(--space-md);
+    position: relative;
+    z-index: 10;
+}
+
+.newsletter-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.newsletter-content h3 {
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-xs);
+}
+
+.newsletter-content p {
+    color: var(--color-gray);
+    margin-bottom: var(--space-md);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: var(--space-sm);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input[type="email"] {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 0;
+    /* Override generic margin */
+}
+
+.newsletter-form input[type="email"]:focus {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: var(--color-gold);
+}
+
+.btn-newsletter {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-white);
+    color: var(--color-bg-dark);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-newsletter:hover {
+    background: var(--color-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.success-message {
+    color: #25d366;
+    /* WhatsApp green looks positive */
+    font-weight: bold;
+    margin-top: var(--space-md) !important;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .btn-newsletter {
+        width: 100%;
+    }
+}

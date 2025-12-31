@@ -48,7 +48,14 @@ window.uiTranslations = {
         'footer': 'Ein Projekt von Alexander Rheindorf | Frohes neues Jahr 2026! 🎆',
         'history-title': 'Deine letzten Grüße 📜',
         'history-empty': 'Noch keine Grüße erstellt.',
-        'history-clear': 'Verlauf löschen'
+        'history-clear': 'Verlauf löschen',
+
+        // Newsletter
+        'newsletter-title': 'Nie wieder einen Anlass verpassen! 🗓️',
+        'newsletter-subtitle': 'Erhalte rechtzeitig Erinnerungen für Ostern, Weihnachten & Co.',
+        'newsletter-placeholder': 'deine@email.com',
+        'btn-subscribe': '🔔 Erinnern lassen',
+        'newsletter-success': 'Danke! Wir erinnern dich rechtzeitig. 💌'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -83,7 +90,14 @@ window.uiTranslations = {
         'footer': 'A project by Alexander Rheindorf | Happy New Year 2026! 🎆',
         'history-title': 'Your Recent Greetings 📜',
         'history-empty': 'No greetings yet.',
-        'history-clear': 'Clear History'
+        'history-clear': 'Clear History',
+
+        // Newsletter
+        'newsletter-title': 'Never miss an occasion again! 🗓️',
+        'newsletter-subtitle': 'Get timely reminders for Easter, Christmas & Co.',
+        'newsletter-placeholder': 'your@email.com',
+        'btn-subscribe': '🔔 Remind me',
+        'newsletter-success': 'Thanks! We will remind you in time. 💌'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',
@@ -118,7 +132,14 @@ window.uiTranslations = {
         'footer': 'Alexander Rheindorf Projesi | Mutlu Yıllar 2026! 🎆',
         'history-title': 'Son Kutlamalarınız 📜',
         'history-empty': 'Henüz kutlama yok.',
-        'history-clear': 'Geçmişi Temizle'
+        'history-clear': 'Geçmişi Temizle',
+
+        // Newsletter
+        'newsletter-title': 'Bir daha asla özel günleri kaçırma! 🗓️',
+        'newsletter-subtitle': 'Paskalya, Noel ve diğer günler için zamanında hatırlatıcı al.',
+        'newsletter-placeholder': 'senin@email.com',
+        'btn-subscribe': '🔔 Hatırlat',
+        'newsletter-success': 'Teşekkürler! Sana zamanında hatırlatacağız. 💌'
     },
     es: {
         'header-title': 'Tu Saludo de Año Nuevo Personal 2026',
@@ -153,7 +174,14 @@ window.uiTranslations = {
         'footer': 'Un proyecto de Alexander Rheindorf | ¡Feliz Año Nuevo 2026! 🎆',
         'history-title': 'Tus Saludos Recientes 📜',
         'history-empty': 'Aún no hay saludos.',
-        'history-clear': 'Borrar Historial'
+        'history-clear': 'Borrar Historial',
+
+        // Newsletter
+        'newsletter-title': '¡No vuelvas a perderte una ocasión! 🗓️',
+        'newsletter-subtitle': 'Recibe recordatorios a tiempo para Pascua, Navidad y más.',
+        'newsletter-placeholder': 'tu@email.com',
+        'btn-subscribe': '🔔 Recordarme',
+        'newsletter-success': '¡Gracias! Te avisaremos a tiempo. 💌'
     },
     fr: {
         'header-title': 'Votre Vœu de Nouvel An Personnel 2026',
@@ -188,7 +216,14 @@ window.uiTranslations = {
         'footer': 'Un projet d\'Alexander Rheindorf | Bonne Année 2026! 🎆',
         'history-title': 'Vos Derniers Vœux 📜',
         'history-empty': 'Pas encore de vœux.',
-        'history-clear': 'Effacer l\'historique'
+        'history-clear': 'Effacer l\'historique',
+
+        // Newsletter
+        'newsletter-title': 'Ne manquez plus jamais une occasion ! 🗓️',
+        'newsletter-subtitle': 'Recevez des rappels en temps voulu pour Pâques, Noël, etc.',
+        'newsletter-placeholder': 'votre@email.com',
+        'btn-subscribe': '🔔 Rappelle-moi',
+        'newsletter-success': 'Merci ! Nous vous rappellerons à temps. 💌'
     },
     it: {
         'header-title': 'Il Tuo Augurio di Capodanno Personale 2026',
@@ -223,7 +258,14 @@ window.uiTranslations = {
         'footer': 'Un progetto di Alexander Rheindorf | Felice Anno Nuovo 2026! 🎆',
         'history-title': 'Auguri Recenti 📜',
         'history-empty': 'Nessun augurio ancora.',
-        'history-clear': 'Cancella Cronologia'
+        'history-clear': 'Cancella Cronologia',
+
+        // Newsletter
+        'newsletter-title': 'Non perdere mai più un\'occasione! 🗓️',
+        'newsletter-subtitle': 'Ricevi promemoria tempestivi per Pasqua, Natale e altro.',
+        'newsletter-placeholder': 'tua@email.com',
+        'btn-subscribe': '🔔 Ricordami',
+        'newsletter-success': 'Grazie! Ti ricorderemo in tempo. 💌'
     },
     bg: {
         'header-title': 'Вашето Лично Новогодишно Пожелание 2026',
@@ -258,7 +300,14 @@ window.uiTranslations = {
         'footer': 'Проект на Alexander Rheindorf | Честита Нова Година 2026! 🎆',
         'history-title': 'Вашите Последни Пожелания 📜',
         'history-empty': 'Все още няма пожелания.',
-        'history-clear': 'Изчисти Историята'
+        'history-clear': 'Изчисти Историята',
+
+        // Newsletter
+        'newsletter-title': 'Никога повече не пропускайте повод! 🗓️',
+        'newsletter-subtitle': 'Получавайте навременни напомняния за Великден, Коледа и др.',
+        'newsletter-placeholder': 'vasya@email.com',
+        'btn-subscribe': '🔔 Напомни ми',
+        'newsletter-success': 'Благодаря! Ще ви напомним навреме. 💌'
     }
 };
 

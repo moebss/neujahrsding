@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="newsletter_styles.css">
 
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="✨ Dein persönlicher Neujahrsgruß 2026">
@@ -177,6 +178,25 @@
         </aside>
 
     </main>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h3 data-i18n="newsletter-title">Nie wieder einen Anlass verpassen! 🗓️</h3>
+            <p data-i18n="newsletter-subtitle">Erhalte rechtzeitig Erinnerungen für Ostern, Weihnachten & Co.</p>
+
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" id="newsletterEmail" data-i18n-placeholder="newsletter-placeholder"
+                    placeholder="deine@email.com" required>
+                <button type="submit" class="btn-newsletter">
+                    <span data-i18n="btn-subscribe">🔔 Erinnern lassen</span>
+                </button>
+            </form>
+            <p id="newsletterSuccess" class="success-message hidden" data-i18n="newsletter-success">
+                Danke! Wir haben dich eingetragen. 💌
+            </p>
+        </div>
+    </section>
 
     <footer>
         <p data-i18n="footer">Ein Projekt von Alexander Rheindorf | Frohes neues Jahr 2026! 🎆</p>
