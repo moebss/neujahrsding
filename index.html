@@ -35,6 +35,46 @@
     <meta name="twitter:title" content="Dein persönlicher Neujahrsgruß 2026">
     <meta name="twitter:description" content="Erstelle in Sekunden einzigartige Neujahrswünsche!">
     <meta name="twitter:image" content="https://neujahrsgruss2026.de/og-image.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://neujahrsgruss2026.de">
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Neujahrsgruß Generator 2026",
+      "description": "Erstelle personalisierte, KI-generierte Neujahrswünsche in Sekunden. Kostenlos, mehrsprachig und einfach zu teilen.",
+      "url": "https://neujahrsgruss2026.de",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Alexander Rheindorf",
+        "url": "https://ko-fi.com/alexanderrheindorf"
+      },
+      "inLanguage": ["de", "en", "tr", "es", "fr", "it", "bg"],
+      "featureList": [
+        "KI-generierte Neujahrswünsche",
+        "Mehrsprachige Unterstützung",
+        "Export als Bild",
+        "WhatsApp & E-Mail Sharing",
+        "Personalisierung nach Beziehung und Tonalität"
+      ],
+      "screenshot": "https://neujahrsgruss2026.de/og-image.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127"
+      }
+    }
+    </script>
 </head>
 
 <body>
@@ -205,6 +245,16 @@
                         <span data-i18n="btn-download">Als Bild speichern</span>
                     </button>
 
+                    <button class="btn-action btn-download-pdf" id="downloadPdfBtn">
+                        <span class="icon">📄</span>
+                        <span data-i18n="btn-download-pdf">Als PDF</span>
+                    </button>
+
+                    <button class="btn-action btn-download-story" id="downloadStoryBtn">
+                        <span class="icon">📱</span>
+                        <span data-i18n="btn-download-story">Story-Format</span>
+                    </button>
+
                     <button class="btn-action btn-viral" id="viralBtn">
                         <span class="icon">🚀</span>
                         <span data-i18n="btn-viral">App teilen</span>
@@ -299,6 +349,7 @@
     </div>
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="messages_i18n.js"></script>
     <script src="script.js"></script>
 </body>

@@ -832,6 +832,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Download as Image (Robust "Ghost Container" Method)
     document.getElementById('downloadBtn').addEventListener('click', async () => {
+        await exportAsImage('standard');
+    });
+
+    // PDF Export
+    document.getElementById('downloadPdfBtn').addEventListener('click', async () => {
+        await exportAsPDF();
+    });
+
+    // Instagram Story Format (9:16)
+    document.getElementById('downloadStoryBtn').addEventListener('click', async () => {
+        await exportAsImage('story');
+    });
+
+    // ===========================
+    // EXPORT HELPER FUNCTIONS
+    // ===========================
+
+    async function exportAsImage(format = 'standard') {
         let messageText = document.getElementById('generatedMessage').innerText;
         const currentStyle = document.querySelector('.export-style-btn.active')?.dataset.style || 'classic';
 
@@ -846,15 +864,27 @@ document.addEventListener('DOMContentLoaded', () => {
         badEndings.forEach(regex => { messageText = messageText.replace(regex, ''); });
         messageText = messageText.replace(/[\n\r\s]+[-–]*[\n\r\s]*$/, '').trim();
 
-        const btnText = document.querySelector('#downloadBtn span[data-i18n]');
+        const btnId = format === 'story' ? '#downloadStoryBtn' : '#downloadBtn';
+        const btnText = document.querySelector(`${btnId} span[data-i18n]`);
         const originalText = btnText ? btnText.textContent : 'Als Bild speichern';
         if (btnText) btnText.textContent = '🎨 ...';
 
         const exportContainer = document.createElement('div');
         exportContainer.style.position = 'fixed';
         exportContainer.style.left = '-9999px';
-        exportContainer.style.width = '800px';
-        exportContainer.style.padding = '80px 60px';
+
+        // Format-specific dimensions
+        if (format === 'story') {
+            // Instagram Story: 1080x1920 (9:16 ratio)
+            exportContainer.style.width = '1080px';
+            exportContainer.style.height = '1920px';
+            exportContainer.style.padding = '120px 80px';
+        } else {
+            // Standard: Square-ish format
+            exportContainer.style.width = '1000px';
+            exportContainer.style.padding = '100px 80px';
+        }
+
         exportContainer.style.borderRadius = '40px';
         exportContainer.style.display = 'flex';
         exportContainer.style.flexDirection = 'column';
@@ -878,25 +908,29 @@ document.addEventListener('DOMContentLoaded', () => {
             exportContainer.style.border = '6px solid #ffd700';
         }
 
+        const titleSize = format === 'story' ? '64px' : '48px';
+        const messageSize = messageText.length > 400 ? (format === 'story' ? '36px' : '24px') : (format === 'story' ? '48px' : '32px');
+        const qrSize = format === 'story' ? '120' : '100';
+
         exportContainer.innerHTML = `
-            <div style="font-size: 48px; margin-bottom: 50px; color: ${currentStyle === 'elegant' ? '#fff' : '#ffd700'}; text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); font-weight: bold;">
+            <div style="font-size: ${titleSize}; margin-bottom: 50px; color: ${currentStyle === 'elegant' ? '#fff' : '#ffd700'}; text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); font-weight: bold;">
                 🎆 ✨ Neujahrsgruß 2026 ✨ 🎆
             </div>
-            <div style="font-size: ${messageText.length > 400 ? '24px' : '32px'}; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.4); margin-bottom: 60px; white-space: pre-wrap; width: 100%;">
+            <div style="font-size: ${messageSize}; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.4); margin-bottom: 60px; white-space: pre-wrap; width: 100%;">
                 ${messageText}
             </div>
             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 30px; margin-top: auto;">
                 <div style="text-align: left;">
-                    <span style="font-size: 18px; color: rgba(255, 255, 255, 0.9); text-transform: uppercase; letter-spacing: 4px; font-weight: 600; display: block;">
+                    <span style="font-size: ${format === 'story' ? '24px' : '18px'}; color: rgba(255, 255, 255, 0.9); text-transform: uppercase; letter-spacing: 4px; font-weight: 600; display: block;">
                         ✨ neujahrsgruss2026.de ✨
                     </span>
-                    <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 5px;">
+                    <span style="font-size: ${format === 'story' ? '16px' : '12px'}; opacity: 0.6; display: block; margin-top: 5px;">
                         Alexander Rheindorf
                     </span>
                 </div>
-                <div style="background: white; padding: 10px; border-radius: 12px;">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://neujahrsgruss2026.de&bgcolor=ffffff&color=000000" 
-                         style="width: 80px; height: 80px; display: block;" crossorigin="anonymous">
+                <div style="background: white; padding: 12px; border-radius: 16px;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://neujahrsgruss2026.de&bgcolor=ffffff&color=000000&margin=10&qzone=2" 
+                         style="width: ${qrSize}px; height: ${qrSize}px; display: block;" crossorigin="anonymous">
                 </div>
             </div>
         `;
@@ -904,13 +938,25 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(exportContainer);
 
         try {
-            const canvas = await html2canvas(exportContainer, { scale: 2, backgroundColor: null, useCORS: true });
+            // Higher quality: scale 3 instead of 2
+            const canvas = await html2canvas(exportContainer, {
+                scale: 3,
+                backgroundColor: null,
+                useCORS: true,
+                logging: false,
+                allowTaint: false
+            });
+
             const link = document.createElement('a');
-            link.download = `neujahrsgruss-2026-${currentStyle}.png`;
-            link.href = canvas.toDataURL('image/png');
+            const formatSuffix = format === 'story' ? '-story' : '';
+            link.download = `neujahrsgruss-2026-${currentStyle}${formatSuffix}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
             link.click();
+
+            showToast(currentLanguage === 'de' ? 'Bild gespeichert! 📸' : 'Image saved! 📸');
         } catch (err) {
             console.error('Export failed:', err);
+            showToast(currentLanguage === 'de' ? 'Export fehlgeschlagen 😔' : 'Export failed 😔');
         } finally {
             if (document.body.contains(exportContainer)) {
                 document.body.removeChild(exportContainer);
@@ -922,7 +968,100 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof showNewsletterModal === 'function') showNewsletterModal();
             }, 1000);
         }
-    });
+    }
+
+    async function exportAsPDF() {
+        let messageText = document.getElementById('generatedMessage').innerText;
+        const currentStyle = document.querySelector('.export-style-btn.active')?.dataset.style || 'classic';
+
+        playSuccessSound();
+
+        // Clean text
+        const badEndings = [
+            /Dein Name\s*$/i, /\[Dein Name\]\s*$/i, /Ihr Name\s*$/i, /\[Ihr Name\]\s*$/i,
+            /Your Name\s*$/i, /\[Your Name\]\s*$/i
+        ];
+        badEndings.forEach(regex => { messageText = messageText.replace(regex, ''); });
+        messageText = messageText.trim();
+
+        const btnText = document.querySelector('#downloadPdfBtn span[data-i18n]');
+        const originalText = btnText ? btnText.textContent : 'Als PDF';
+        if (btnText) btnText.textContent = '📄 ...';
+
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Set background color based on style
+            let bgColor, textColor, accentColor;
+            if (currentStyle === 'elegant') {
+                bgColor = [28, 37, 46];
+                textColor = [255, 255, 255];
+                accentColor = [255, 255, 255];
+            } else if (currentStyle === 'playful') {
+                bgColor = [255, 0, 110];
+                textColor = [255, 255, 255];
+                accentColor = [255, 215, 0];
+            } else {
+                bgColor = [74, 10, 105];
+                textColor = [255, 255, 255];
+                accentColor = [255, 215, 0];
+            }
+
+            // Background
+            doc.setFillColor(...bgColor);
+            doc.rect(0, 0, 210, 297, 'F');
+
+            // Title
+            doc.setFontSize(28);
+            doc.setTextColor(...accentColor);
+            doc.setFont('helvetica', 'bold');
+            doc.text('🎆 Neujahrsgruß 2026 🎆', 105, 40, { align: 'center' });
+
+            // Message
+            doc.setFontSize(14);
+            doc.setTextColor(...textColor);
+            doc.setFont('helvetica', 'normal');
+
+            const lines = doc.splitTextToSize(messageText, 160);
+            doc.text(lines, 105, 70, { align: 'center', maxWidth: 160 });
+
+            // Footer
+            doc.setFontSize(10);
+            doc.setTextColor(200, 200, 200);
+            doc.text('✨ neujahrsgruss2026.de ✨', 105, 270, { align: 'center' });
+            doc.setFontSize(8);
+            doc.text('Alexander Rheindorf', 105, 277, { align: 'center' });
+
+            // Add QR Code
+            const qrImg = new Image();
+            qrImg.crossOrigin = 'anonymous';
+            qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://neujahrsgruss2026.de&bgcolor=ffffff&color=000000&margin=10';
+
+            qrImg.onload = () => {
+                doc.addImage(qrImg, 'PNG', 85, 245, 40, 40);
+                doc.save(`neujahrsgruss-2026-${currentStyle}.pdf`);
+                showToast(currentLanguage === 'de' ? 'PDF gespeichert! 📄' : 'PDF saved! 📄');
+                if (btnText) btnText.textContent = originalText;
+            };
+
+            qrImg.onerror = () => {
+                // Save without QR if loading fails
+                doc.save(`neujahrsgruss-2026-${currentStyle}.pdf`);
+                showToast(currentLanguage === 'de' ? 'PDF gespeichert! 📄' : 'PDF saved! 📄');
+                if (btnText) btnText.textContent = originalText;
+            };
+
+        } catch (err) {
+            console.error('PDF export failed:', err);
+            showToast(currentLanguage === 'de' ? 'PDF-Export fehlgeschlagen 😔' : 'PDF export failed 😔');
+            if (btnText) btnText.textContent = originalText;
+        }
+    }
 
 
     // ===========================

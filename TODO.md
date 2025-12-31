@@ -2,15 +2,14 @@
 
 Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektionierung der Neujahrsgruß-App 2026.
 
-## 🔴 Hohe Priorität (Muss bald erledigt werden)
-- [ ] **Double-Opt-In (DOI) Prozess:** Aktuell werden E-Mails nur in Supabase gesammelt. Um sie rechtssicher anzuschreiben, müssen sie in ein Marketing-Tool (z.B. Brevo, Mailchimp) importiert werden, das eine Bestätigungsmail verschickt.
-
 ## 🟡 Mittlere Priorität (Optimierung)
+- [ ] **Double-Opt-In (DOI) Prozess:** Aktuell werden E-Mails nur in Supabase gesammelt. Um sie rechtssicher anzuschreiben, müssen sie in ein Marketing-Tool (z.B. Brevo, Mailchimp) importiert werden, das eine Bestätigungsmail verschickt.
 - [ ] **Sprach-Vorlagen erweitern:** In `messages_i18n.js` die `messageTemplates` für Englisch, Türkisch, Spanisch etc. auf das gleiche Detail-Level wie die deutschen Vorlagen bringen.
-- [ ] **Titel-Tag SEO:** Titel-Tags für jede Seite inkl. Meta-Beschreibungen optimieren.
 - [ ] **Performance Check:** Prüfen, ob die vielen Animationen (Sparkles, Parallax) auf älteren Smartphones flüssig laufen.
 
 ## ✅ Erledigt
+- [x] **SEO-Optimierung:** Schema.org strukturierte Daten, Sitemap.xml, robots.txt, Canonical URLs implementiert.
+- [x] **Export-Funktionen erweitert:** PDF-Export, Instagram Story Format (9:16), höhere QR-Code-Qualität (200x200), bessere Bildauflösung (scale: 3).
 - [x] **Newsletter Modal Fix:** <strong>-Tags werden nun korrekt gerendert und das Popup erscheint solange nach der Generierung, bis der User abonniert hat.
 - [x] **Newsletter Backend:** Beide Newsletter-Formulare nutzen jetzt dieselbe Supabase-Tabelle.
 - [x] **Theme Switcher Position:** Auswahl der Farbschemata in die obere rechte Ecke verschoben (schwebendes Design).

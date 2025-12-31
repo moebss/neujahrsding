@@ -1,0 +1,13 @@
+# Neujahrsgruß 2026 - robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://neujahrsgruss2026.de/sitemap.xml
+
+# Block API endpoints from indexing
+Disallow: /api/
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
