@@ -52,8 +52,23 @@ export default async (req, res) => {
             body: JSON.stringify({
                 model: 'sonar-pro',
                 messages: [
-                    { role: 'system', content: `Du schreibst Neujahrsgrüße für 2026 auf ${lang}. Antworte NUR mit dem Text des Grußes. KEINE Platzhalter für Absender/Unterschrift wie "[Dein Name]" am Ende.` },
-                    { role: 'user', content: `Name: ${name}, Verhältnis: ${relation}, Details: ${info}, Ton: ${tone}` }
+                    {
+                        role: 'system',
+                        content: `You are a helpful assistant writing New Year's greetings for 2026. 
+                        - IMPORTANT: Write ONLY in the language requested: "${lang}". 
+                        - If "${lang}" is 'de' write in German. 
+                        - If "${lang}" is 'en' write in English.
+                        - If "${lang}" is 'tr' write in Turkish.
+                        - If "${lang}" is 'es' write in Spanish.
+                        - If "${lang}" is 'fr' write in French.
+                        - If "${lang}" is 'it' write in Italian.
+                        - If "${lang}" is 'bg' write in Bulgarian.
+                        
+                        - Output ONLY the greeting text. 
+                        - Do NOT include any intro or outro like "Here is your text:".
+                        - Do NOT include placeholders like "[Your Name]" at the end.`
+                    },
+                    { role: 'user', content: `Write a ${tone} greeting for ${name} (Relationship: ${relation}). Additional Info: ${info}` }
                 ],
                 max_tokens: 600,
                 temperature: 0.8

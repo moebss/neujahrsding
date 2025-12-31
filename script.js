@@ -869,27 +869,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const newsletterSuccess = document.getElementById('newsletterSuccess');
 
     if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
+        newsletterForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('newsletterEmail').value;
 
-            // Simulation of API call
             const btn = newsletterForm.querySelector('button');
             const originalText = btn.innerHTML;
 
             btn.disabled = true;
             btn.innerHTML = '<span class="sparkle">⏳</span> ...';
 
-            setTimeout(() => {
-                // Here you would normally do: fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ email }) })
-                console.log('Newsletter subscription for:', email);
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) throw new Error('Subscription failed');
 
                 newsletterForm.style.display = 'none';
                 newsletterSuccess.classList.remove('hidden');
-
-                // TODO: Save to backend or local storage
                 localStorage.setItem('newsletter_subscribed', 'true');
-            }, 1000);
+            } catch (err) {
+                alert('Ups! Das hat nicht geklappt. Bitte versuche es später noch einmal.');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
         });
     }
 });
