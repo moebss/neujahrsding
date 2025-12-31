@@ -11,7 +11,6 @@ Dieses Dokument dient als Übersicht für die nächsten Schritte zur Perfektioni
 - [ ] **Saisonale Updates:** Den Prompt in `api/generate.js` so vorbereiten, dass er ab März automatisch auf "Ostergrüße" umgestellt werden kann (oder per Parameter steuerbar machen).
 
 ## ✅ Erledigt
-- [x] **Massen-Generierung (Bulk):** CSV-Upload integriert, um viele Grüße gleichzeitig zu generieren (inkl. Fortschrittsanzeige).
 - [x] **Theme Switcher Position:** Auswahl der Farbschemata in die obere rechte Ecke verschoben (schwebendes Design).
 - [x] **UI Visibility Fix:** "Teilen"- und "Export"-Optionen sind jetzt erst nach der Generierung sichtbar (CSS `.hidden` Fix).
 - [x] **Viral-Loop:** "App teilen" Button für virales Marketing integriert.

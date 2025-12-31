@@ -71,15 +71,7 @@ window.uiTranslations = {
         'style-classic': 'Klassisch',
         'style-elegant': 'Elegant',
         'style-playful': 'Verspielt',
-        'btn-viral': 'App teilen 🚀',
-
-        // Bulk Generation
-        'bulk-title': 'Massen-Generierung (CSV) 📊',
-        'bulk-info': 'Lade eine CSV-Datei hoch, um viele Grüße auf einmal zu erstellen. Format: Name, Beziehung, Info, Ton',
-        'btn-bulk-upload': 'CSV Datei wählen',
-        'btn-bulk-start': 'Alle generieren',
-        'bulk-progress': 'Generiere Gruß {{current}} von {{total}}...',
-        'bulk-success': 'Alle {{total}} Grüße wurden erfolgreich generiert und in der Historie gespeichert! ✅'
+        'btn-viral': 'App teilen 🚀'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -125,15 +117,7 @@ window.uiTranslations = {
         'newsletter-privacy': 'I agree that my email address will be stored to remind me of festive occasions. Unsubscribe possible at any time.',
 
         // Ko-fi
-        'footer-coffee': 'Enjoying the app? Buy me a coffee ☕',
-
-        // Bulk Generation
-        'bulk-title': 'Bulk Generation (CSV) 📊',
-        'bulk-info': 'Upload a CSV file to create many greetings at once. Format: Name, Relationship, Info, Tone',
-        'btn-bulk-upload': 'Choose CSV File',
-        'btn-bulk-start': 'Generate All',
-        'bulk-progress': 'Generating greeting {{current}} of {{total}}...',
-        'bulk-success': 'All {{total}} greetings were successfully generated and saved to history! ✅'
+        'footer-coffee': 'Enjoying the app? Buy me a coffee ☕'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',

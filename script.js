@@ -654,7 +654,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSoundEffects();
     initViralLoop();
     initExportStyles();
-    initBulkGeneration();
 
     // Initialize language from localStorage or default to 'de'
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'de';
@@ -1200,106 +1199,4 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => toast.remove(), 400);
         }, 3000);
     }
-
-    /**
-     * Bulk Generation logic
-     */
-    function initBulkGeneration() {
-        const csvInput = document.getElementById('bulkCsvInput');
-        const startBtn = document.getElementById('startBulkBtn');
-        const statusDiv = document.getElementById('bulkStatus');
-        const progressFill = document.getElementById('bulkProgressFill');
-        const progressText = document.getElementById('bulkProgressText');
-
-        let bulkData = [];
-
-        csvInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const text = event.target.result;
-                bulkData = parseCSV(text);
-
-                if (bulkData.length > 0) {
-                    startBtn.classList.remove('hidden');
-                    startBtn.disabled = false;
-                    showToast(currentLanguage === 'de' ? `${bulkData.length} Einträge gefunden.` : `${bulkData.length} entries found.`);
-                }
-            };
-            reader.readAsText(file);
-        });
-
-        startBtn.addEventListener('click', async () => {
-            startBtn.disabled = true;
-            statusDiv.classList.remove('hidden');
-
-            for (let i = 0; i < bulkData.length; i++) {
-                const row = bulkData[i];
-
-                // Update Progress
-                const progress = ((i + 1) / bulkData.length) * 100;
-                progressFill.style.width = `${progress}%`;
-
-                let text = translations[currentLanguage]['bulk-progress'] || 'Generating...';
-                text = text.replace('{{current}}', i + 1).replace('{{total}}', bulkData.length);
-                progressText.textContent = text;
-
-                try {
-                    // Generate
-                    const message = await generateNewYearMessage(
-                        row.name || 'Jemand',
-                        row.relation || 'friend',
-                        row.info || '',
-                        row.tone || 'warm'
-                    );
-
-                    // The generateNewYearMessage function already saves to history
-                } catch (err) {
-                    console.error('Error in bulk generation for index', i, err);
-                }
-
-                // Small delay to prevent rate limit and show progress
-                await new Promise(r => setTimeout(r, 500));
-            }
-
-            // Success
-            let successMsg = translations[currentLanguage]['bulk-success'] || 'Done!';
-            successMsg = successMsg.replace('{{total}}', bulkData.length);
-            progressText.textContent = successMsg;
-            progressText.style.color = '#25d366';
-
-            playSuccessSound();
-            showToast(successMsg);
-
-            setTimeout(() => {
-                statusDiv.classList.add('hidden');
-                startBtn.classList.add('hidden');
-                csvInput.value = '';
-            }, 5000);
-        });
-
-        function parseCSV(text) {
-            const lines = text.split('\n');
-            const data = [];
-
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue;
-
-                const parts = line.split(',').map(p => p.trim());
-                if (parts.length >= 2) {
-                    data.push({
-                        name: parts[0],
-                        relation: parts[1] || 'friend',
-                        info: parts[2] || '',
-                        tone: parts[3] || 'warm'
-                    });
-                }
-            }
-            return data;
-        }
-    }
 });
-
