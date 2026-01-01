@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="newsletter_styles.css">
     <link rel="stylesheet" href="premium_additions.css">
     <link rel="stylesheet" href="banner.css">
+    <link rel="stylesheet" href="freemium.css">
 
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Dein persönlicher Neujahrsgruß 2026">
@@ -83,6 +84,78 @@
     <!-- Animated fireworks background -->
     <canvas id="particleCanvas" class="particle-canvas"></canvas>
     <div class="fireworks-container" id="fireworksContainer"></div>
+
+    <!-- Upgrade Modal -->
+    <div id="upgradeModal" class="upgrade-modal hidden">
+        <div class="upgrade-content">
+            <button class="close-upgrade" onclick="closeUpgradeModal()">×</button>
+
+            <h2>🎉 Tageslimit erreicht!</h2>
+            <p>Du hast heute bereits <strong>3 kostenlose Grüße</strong> erstellt.</p>
+
+            <div class="upgrade-options">
+                <!-- Option 1: Single Image (NEU!) -->
+                <div class="pricing-card">
+                    <h3>Einzelnes Bild</h3>
+                    <div class="price">€0.99</div>
+                    <p>Einmalige Zahlung</p>
+                    <ul>
+                        <li>1 Bild ohne Wasserzeichen</li>
+                        <li>HD-Export (2000x2000px)</li>
+                        <li>Alle Formate (PNG, Story)</li>
+                    </ul>
+                    <button class="btn-upgrade" onclick="buySingleImage()">
+                        Jetzt kaufen
+                    </button>
+                </div>
+
+                <!-- Option 2: 10 Extra Grüße -->
+                <div class="pricing-card">
+                    <h3>10 Extra-Grüße</h3>
+                    <div class="price">€2.99</div>
+                    <p>Einmalige Zahlung</p>
+                    <ul>
+                        <li>10 zusätzliche Grüße</li>
+                        <li>Kein Wasserzeichen</li>
+                        <li>HD-Export</li>
+                        <li>30 Tage gültig</li>
+                    </ul>
+                    <button class="btn-upgrade" onclick="buyCredits()">
+                        Jetzt kaufen
+                    </button>
+                </div>
+
+                <!-- Option 3: Premium Abo (Best Value) -->
+                <div class="pricing-card featured">
+                    <div class="badge">Bester Wert</div>
+                    <h3>Premium Unlimited</h3>
+                    <div class="price">€4.99<span>/Monat</span></div>
+                    <p>Jederzeit kündbar</p>
+                    <ul>
+                        <li>Unbegrenzte Grüße</li>
+                        <li>Kein Wasserzeichen</li>
+                        <li>4K HD-Export</li>
+                        <li>PDF-Export</li>
+                        <li>Story-Format</li>
+                        <li>Alle Styles</li>
+                        <li>Prioritäts-Support</li>
+                    </ul>
+                    <button class="btn-upgrade premium" onclick="subscribePremium()">
+                        Premium werden
+                    </button>
+                </div>
+            </div>
+
+            <p class="upgrade-note">
+                🔒 Sichere Zahlung mit Stripe • 14 Tage Geld-zurück-Garantie
+            </p>
+        </div>
+    </div>
+
+    <!-- Remaining Counter -->
+    <div id="remainingCounter" class="remaining-counter hidden">
+        Noch <strong id="remainingCount">3</strong> kostenlose Grüße heute
+    </div>
 
     <!-- Sparkle effects -->
     <div class="sparkles" id="sparkles"></div>
@@ -421,6 +494,9 @@
     <script src="script.js"></script>
     <script src="premium_features.js"></script>
     <script src="banner.js"></script>
+    <script src="freemium.js"></script>
+    <script src="watermark.js"></script>
+    <script src="freemium-integration.js"></script>
 </body>
 
 </html>
