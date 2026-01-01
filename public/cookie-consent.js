@@ -18,24 +18,28 @@
         }
     }
 
+    // Helper
+    function t(key, def) {
+        const lang = localStorage.getItem('preferredLanguage') || 'de';
+        return (window.uiTranslations && window.uiTranslations[lang] && window.uiTranslations[lang][key]) || def;
+    }
+
     // Show the Cookie Banner
     function showBanner() {
-        // Create Banner HTML
         const banner = document.createElement('div');
         banner.className = 'cookie-banner';
+
         banner.innerHTML = `
             <div class="cookie-content">
-                <div class="cookie-title">🍪 Wir nutzen Cookies</div>
+                <div class="cookie-title" data-i18n="cookie-title">${t('cookie-title', '🍪 Wir nutzen Cookies')}</div>
                 <p class="cookie-text">
-                    Wir verwenden Tracking-Cookies, um die Performance zu verbessern und Besucherzahlen zu analysieren (Google Analytics 4). 
-                    Deine Daten bleiben anonym.
-                    <a href="rechtliches.html#datenschutz">Mehr Infos</a>
+                    <span data-i18n="cookie-text">${t('cookie-text', 'Tracking Cookies für Analytics...')}</span>
+                    <a href="rechtliches.html#datenschutz" data-i18n="cookie-link">${t('cookie-link', 'Mehr Infos')}</a>
                 </p>
-                <div class="cookie-settings" id="openPrivacySettings" style="display:none;">Einstellungen anpassen</div>
             </div>
             <div class="cookie-actions">
-                <button class="btn-cookie btn-cookie-deny" id="denyCookies">Nur Notwendige</button>
-                <button class="btn-cookie btn-cookie-accept" id="acceptCookies">Alle Akzeptieren</button>
+                <button class="btn-cookie btn-cookie-deny" id="denyCookies" data-i18n="cookie-deny">${t('cookie-deny', 'Ablehnen')}</button>
+                <button class="btn-cookie btn-cookie-accept" id="acceptCookies" data-i18n="cookie-accept">${t('cookie-accept', 'Akzeptieren')}</button>
             </div>
         `;
 
@@ -122,6 +126,18 @@
             });
         }
     };
+
+    // Live update on language change
+    window.addEventListener('languageChanged', () => {
+        const banner = document.querySelector('.cookie-banner');
+        if (banner) {
+            banner.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const start = t(key, '');
+                if (start) el.innerText = start; // simple update
+            });
+        }
+    });
 
     // Init
     window.addEventListener('load', checkConsent);

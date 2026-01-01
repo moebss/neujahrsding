@@ -60,4 +60,18 @@
         }
     }, 1000);
 
+    // 4. LANGUAGE HANDLING
+    function updateLanguage(lang) {
+        if (!window.uiTranslations || !window.uiTranslations[lang]) return;
+        const text = window.uiTranslations[lang]['sticky-btn'] || '✨ Jetzt Gruß erstellen';
+        stickyBtn.textContent = text;
+    }
+
+    // Listen to changes
+    window.addEventListener('languageChanged', (e) => updateLanguage(e.detail.language));
+
+    // Initial load
+    const currentLang = localStorage.getItem('preferredLanguage') || 'de';
+    updateLanguage(currentLang);
+
 })();

@@ -12,6 +12,8 @@ let currentLanguage = 'de';
 function setLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('preferredLanguage', lang);
+    // Dispatch event for other modules
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
     updateUILanguage();
 }
 

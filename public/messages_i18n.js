@@ -79,7 +79,19 @@ window.uiTranslations = {
         'modal-newsletter-title': 'Meld dich jetzt schon mal an!',
         'modal-newsletter-subtitle': 'Erfahre vor allen anderen, wann <strong>grussgenerator.de</strong> online geht. In Zukunft hast du immer den richtigen Text für jeden Anlass parat!',
         'modal-btn-subscribe': '🔔 Jetzt anmelden',
-        'modal-success': 'Hervorragend! Du bist dabei. 💌'
+        'modal-success': 'Hervorragend! Du bist dabei. 💌',
+
+        // Social Proof & Sticky
+        'social-proof-text': 'Bereits <strong id="greetingCounter">{n}</strong> Grüße erstellt!',
+        'sticky-btn': '✨ Jetzt Gruß erstellen',
+
+        // Cookie Banner
+        'cookie-title': '🍪 Wir nutzen Cookies',
+        'cookie-text': 'Wir verwenden Tracking-Cookies, um die Performance zu verbessern und Besucherzahlen zu analysieren (Google Analytics 4). Deine Daten bleiben anonym.',
+        'cookie-link': 'Mehr Infos',
+        'cookie-accept': 'Alle Akzeptieren',
+        'cookie-deny': 'Nur Notwendige',
+        'cookie-settings': 'Einstellungen anpassen'
     },
     en: {
         'header-title': 'Your Personal New Year\'s Greeting 2026',
@@ -133,7 +145,19 @@ window.uiTranslations = {
         'modal-newsletter-title': 'Sign up now!',
         'modal-newsletter-subtitle': 'Be the first to know when <strong>grussgenerator.de</strong> goes live. In the future, you\'ll always have the right text for every occasion!',
         'modal-btn-subscribe': '🔔 Sign up now',
-        'modal-success': 'Excellent! You\'re in. 💌'
+        'modal-success': 'Excellent! You\'re in. 💌',
+
+        // Social Proof & Sticky
+        'social-proof-text': 'Already <strong id="greetingCounter">{n}</strong> greetings created!',
+        'sticky-btn': '✨ Create Greeting Now',
+
+        // Cookie Banner
+        'cookie-title': '🍪 We use Cookies',
+        'cookie-text': 'We use tracking cookies to improve performance and analyze visitor numbers (Google Analytics 4). Your data remains anonymous.',
+        'cookie-link': 'More Info',
+        'cookie-accept': 'Accept All',
+        'cookie-deny': 'Necessary Only',
+        'cookie-settings': 'Adjust Settings'
     },
     tr: {
         'header-title': 'Kişisel Yeni Yıl Kutlamanız 2026',
@@ -398,7 +422,19 @@ window.uiTranslations = {
         'modal-newsletter-title': 'Регистрирайте се сега!',
         'modal-newsletter-subtitle': 'Научете първи кога <strong>grussgenerator.de</strong> ще бъде онлайн. В бъдеще винаги ще имате правилния текст за всеки повод!',
         'modal-btn-subscribe': '🔔 Регистрирайте се сега',
-        'modal-success': 'Отлично! Вече сте част от нас. 💌'
+        'modal-success': 'Отлично! Вече сте част от нас. 💌',
+
+        // Social Proof & Sticky
+        'social-proof-text': 'Вече <strong id="greetingCounter">{n}</strong> поздрави създадени!',
+        'sticky-btn': '✨ Създай поздрав сега',
+
+        // Cookie Banner (using EN fallback for complex text to be safe, or simplified BG)
+        'cookie-title': '🍪 Бисквитки',
+        'cookie-text': 'Използваме бисквитки за анализ и подобряване на работата. Данните са анонимни.',
+        'cookie-link': 'Повече инфо',
+        'cookie-accept': 'Приемам всичко',
+        'cookie-deny': 'Само необходимото',
+        'cookie-settings': 'Настройки'
     }
 };
 

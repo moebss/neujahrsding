@@ -18,10 +18,26 @@
 
     // Update counter display
     function updateCounter() {
-        if (counterElement) {
-            counterElement.textContent = currentCount.toLocaleString('de-DE');
+        // Always fetch fresh element in case it was re-rendered
+        const el = document.getElementById('greetingCounter');
+        if (el && el.parentElement) {
+            const lang = localStorage.getItem('preferredLanguage') || 'de';
+
+            // Get template
+            let tmpl = 'Bereits <strong id="greetingCounter">{n}</strong> Grüße erstellt!';
+            if (window.uiTranslations && window.uiTranslations[lang] && window.uiTranslations[lang]['social-proof-text']) {
+                tmpl = window.uiTranslations[lang]['social-proof-text'];
+            }
+
+            // Replace placeholder with HTML number
+            const numberHtml = `<strong id="greetingCounter">${currentCount.toLocaleString('de-DE')}</strong>`;
+            el.parentElement.innerHTML = tmpl.replace('{n}', numberHtml);
         }
     }
+
+    // Listen to changes
+    window.addEventListener('languageChanged', updateCounter);
+
 
     // Increment counter (called after generating a greeting)
     window.incrementSocialProof = function () {
