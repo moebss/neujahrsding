@@ -53,7 +53,7 @@ async function buySingleImage() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                priceId: 'price_1QWz...', // TODO: Replace with real Stripe Price ID
+                priceId: 'price_1SkoF46aDZs44RPVoEAyarvl', // Single Image €0.99
                 mode: 'payment',
                 metadata: {
                     type: 'single_image',
@@ -84,7 +84,7 @@ async function buyCredits() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                priceId: 'price_1QWz...', // TODO: Replace with real Stripe Price ID
+                priceId: 'price_1SkoG16aDZs44RPV7n8l3x23', // 10 Credits €2.99
                 mode: 'payment',
                 metadata: {
                     type: 'credits',
@@ -116,7 +116,7 @@ async function subscribePremium() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                priceId: 'price_1QWz...', // TODO: Replace with real Stripe Price ID
+                priceId: 'price_1SkoGt6aDZs44RPVbPiraiZC', // Premium €4.99/month
                 mode: 'subscription',
                 metadata: {
                     type: 'premium',
