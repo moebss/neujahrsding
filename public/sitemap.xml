@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://neujahrsgruss2026.de/</loc>
+        <lastmod>2026-01-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="de" href="https://neujahrsgruss2026.de/?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://neujahrsgruss2026.de/?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://neujahrsgruss2026.de/?lang=es"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://neujahrsgruss2026.de/?lang=fr"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://neujahrsgruss2026.de/?lang=it"/>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://neujahrsgruss2026.de/?lang=tr"/>
+        <xhtml:link rel="alternate" hreflang="bg" href="https://neujahrsgruss2026.de/?lang=bg"/>
+    </url>
+    
+    <!-- Success Page -->
+    <url>
+        <loc>https://neujahrsgruss2026.de/success.html</loc>
+        <lastmod>2026-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <!-- Rechtliches -->
+    <url>
+        <loc>https://neujahrsgruss2026.de/rechtliches.html</loc>
+        <lastmod>2026-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+</urlset>
