@@ -1,10 +1,22 @@
 {
-  "name": "neujahrsgruesse-2026",
-  "version": "1.0.0",
-  "description": "Individuelle Neujahrsgrüße mit KI-Backend",
+  "name": "neujahrsgruesse",
+  "version": "2.0.0",
+  "description": "AI-powered New Year's greetings generator with Freemium monetization",
   "main": "index.html",
-  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'"
+  },
   "dependencies": {
-    "node-fetch": "^2.6.7"
-  }
+    "stripe": "^14.10.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "new-year",
+    "greetings",
+    "ai",
+    "freemium"
+  ],
+  "author": "Alexander Rheindorf",
+  "license": "MIT"
 }

@@ -40,23 +40,102 @@ function updateRemainingCounter(remaining) {
     }
 }
 
-// Payment Functions
+// ===========================
+// STRIPE PAYMENT FUNCTIONS
+// ===========================
+
+// Single Image Payment (€0.99)
 async function buySingleImage() {
     console.log('🛒 Single Image purchase initiated');
-    alert('Stripe Integration folgt: €0.99 für 1 Bild ohne Wasserzeichen');
-    // TODO: Implement Stripe Checkout
+
+    try {
+        const response = await fetch('/api/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                priceId: 'price_1QWz...', // TODO: Replace with real Stripe Price ID
+                mode: 'payment',
+                metadata: {
+                    type: 'single_image',
+                    product: 'Single Image No Watermark'
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to create checkout');
+        }
+
+        const data = await response.json();
+        window.location.href = data.url; // Redirect to Stripe
+
+    } catch (err) {
+        console.error('Payment error:', err);
+        alert('Fehler beim Zahlungsvorgang. Bitte versuche es erneut.');
+    }
 }
 
+// 10 Credits (€2.99)
 async function buyCredits() {
     console.log('🛒 Credits purchase initiated');
-    alert('Stripe Integration folgt: €2.99 für 10 Extra-Grüße');
-    // TODO: Implement Stripe Checkout
+
+    try {
+        const response = await fetch('/api/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                priceId: 'price_1QWz...', // TODO: Replace with real Stripe Price ID
+                mode: 'payment',
+                metadata: {
+                    type: 'credits',
+                    amount: 10,
+                    product: '10 Extra Grüße'
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to create checkout');
+        }
+
+        const data = await response.json();
+        window.location.href = data.url;
+
+    } catch (err) {
+        console.error('Payment error:', err);
+        alert('Fehler beim Zahlungsvorgang. Bitte versuche es erneut.');
+    }
 }
 
+// Premium Subscription (€4.99/month)
 async function subscribePremium() {
     console.log('🛒 Premium subscription initiated');
-    alert('Stripe Integration folgt: €4.99/Monat Premium Unlimited');
-    // TODO: Implement Stripe Checkout
+
+    try {
+        const response = await fetch('/api/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                priceId: 'price_1QWz...', // TODO: Replace with real Stripe Price ID
+                mode: 'subscription',
+                metadata: {
+                    type: 'premium',
+                    product: 'Premium Unlimited Monthly'
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to create checkout');
+        }
+
+        const data = await response.json();
+        window.location.href = data.url;
+
+    } catch (err) {
+        console.error('Payment error:', err);
+        alert('Fehler beim Abo-Abschluss. Bitte versuche es erneut.');
+    }
 }
 
 // Check single image credit
@@ -74,6 +153,21 @@ function consumeSingleImageCredit() {
 // Set single image credit (after successful payment)
 function setSingleImageCredit() {
     localStorage.setItem('singleImageCredit', 'available');
+}
+
+// Check extra credits
+function getExtraCredits() {
+    return parseInt(localStorage.getItem('extraCredits') || '0');
+}
+
+// Use extra credit
+function useExtraCredit() {
+    const credits = getExtraCredits();
+    if (credits > 0) {
+        localStorage.setItem('extraCredits', credits - 1);
+        return true;
+    }
+    return false;
 }
 
 console.log('✅ Freemium System Integration loaded');
