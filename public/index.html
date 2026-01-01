@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="banner.css">
     <link rel="stylesheet" href="freemium.css">
     <link rel="stylesheet" href="promo.css">
+    <link rel="stylesheet" href="history-collapse.css">
 
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Neujahrsgrüße 2026 kostenlos erstellen | KI Generator">
@@ -385,6 +386,24 @@
                         <span class="btn-shine"></span>
                     </button>
                 </form>
+
+                <!-- Collapsible History -->
+                <div class="history-collapse" id="historyCollapse">
+                    <button class="history-toggle" id="historyToggle">
+                        <span class="toggle-icon">📜</span>
+                        <span class="toggle-text">Deine letzten Grüße</span>
+                        <span class="toggle-badge" id="historyBadge">0</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                    <div class="history-content hidden" id="historyContent">
+                        <div id="historyList" class="history-list-inline">
+                            <p class="empty-history">Noch keine Grüße erstellt.</p>
+                        </div>
+                        <button id="clearHistoryBtn" class="btn-clear-history-inline">
+                            🗑️ Verlauf löschen
+                        </button>
+                    </div>
+                </div>
             </section>
 
             <!-- Output Section -->
@@ -515,6 +534,7 @@
     <script src="freemium-integration.js"></script>
     <script src="freemium-activation.js"></script>
     <script src="promo.js"></script>
+    <script src="history-collapse.js"></script>
 </body>
 
 </html>
